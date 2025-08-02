@@ -63,7 +63,7 @@ public class Draughts10x10 extends JFrame {
                 game = new Game(color);
                 
                 center.add(game);
-                center.validate();
+                validate();
             });
         }
         
