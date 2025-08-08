@@ -21,7 +21,7 @@ public class SquareBoard extends AbstractBoard {
     final public static int SQUARES = SIZE * SIZE / 2;//50 (dark squares)
     
     //square color
-    final private static Color DARK = new Color(180, 135, 95);
+    final private static Color DARK = new Color(170, 125, 85);
     
     //background
     private static Image wood;
@@ -76,3 +76,4 @@ public class SquareBoard extends AbstractBoard {
     }
     
 }
+
