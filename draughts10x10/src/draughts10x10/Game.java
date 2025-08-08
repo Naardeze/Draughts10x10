@@ -53,9 +53,9 @@ public class Game extends JLayeredPane implements ActionListener {
     final public static char[] KING = {W_KING, B_KING};//W B
 
     //used in animation
-    final private static int FRAMES = 25;//steps p square
-    final private static int MILLI = 6;//milliseconds p step
-    final private static int DELAY = 140;//milliseconds delay time
+    final private static int FRAMES = 25;//frames p square
+    final private static int MILLI = 6;//milliseconds p frame
+    final private static int DELAY = 140;//milliseconds delay used in animation
     
     //player color        
     final private int player;
@@ -477,3 +477,4 @@ public class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
