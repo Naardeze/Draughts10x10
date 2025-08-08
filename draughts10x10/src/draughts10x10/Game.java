@@ -342,10 +342,10 @@ public class Game extends JLayeredPane implements ActionListener {
             hintBoard.setVisible(true);
         //computer (AI)
         } else {
-            //wait please
+            //one moment please
             positionBoard.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-            
 
+            //AI move
             new Thread(){
                 @Override
                 public void run() {
@@ -477,4 +477,5 @@ public class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
 
