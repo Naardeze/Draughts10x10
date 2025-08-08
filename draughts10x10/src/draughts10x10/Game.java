@@ -415,15 +415,14 @@ public class Game extends JLayeredPane implements ActionListener {
         @Override
         public void run() {
             //animation
-            //piece direction
             Direction direction = Direction.getDirection(index, positionBoard.getMove().get(0));
 
             //loop through move
-            for (int step : positionBoard.getMove()) {//<captures + destination>
+            for (int step : positionBoard.getMove()) {//<<captures> + destination>
                 do {
                     index = direction.getNext(index);
       
-                    //move piece (location) to square[index]
+                    //location -> square[index]
                     for (int horizontal = square[index].x - location.x, vertical = square[index].y - location.y, i = FRAMES - 1; i >= 0; i--) {
                         location.setLocation(square[index].x - (int) (i * (double) horizontal / FRAMES), square[index].y - (int) (i * (double) vertical / FRAMES));
                         
@@ -433,7 +432,7 @@ public class Game extends JLayeredPane implements ActionListener {
                             Thread.sleep(MILLI);
                         } catch (Exception ex) {}
                     }
-                } while (direction.x * (x(step) - x(index)) != -direction.y * (y(step) - y(index)));
+                } while (direction.x * (x(step) - x(index)) != -direction.y * (y(step) - y(index)));//x!=-y -> 0=-0 or 90 degree angle
     
                 //90 degree angle
                 if (index != step) {
@@ -477,5 +476,3 @@ public class Game extends JLayeredPane implements ActionListener {
     }
     
 }
-
-
