@@ -18,7 +18,7 @@ import java.util.HashSet;
  * enum Node -> evaluation (alfa beta)
  * enum Diagonal -> 4 directions (bitboards)
  * 
- * valueOf -> move result
+ * valueOf -> alfa beta
  * getBoard -> moved board
  * getAIMove -> best move
  * 
@@ -458,3 +458,4 @@ final class MinMax extends HashMap<String, Integer> {//<board, value>
     }
 
 }
+
