@@ -140,7 +140,7 @@ final class Game extends JLayeredPane implements ActionListener {
                             ArrayList<Integer> captures = new ArrayList(pieceBoard.getMove());
                             int next = captures.remove(captures.size() - 1);
                             
-                            //x==y
+                            //x=y
                             if (index != next && Math.abs(x(index) - x(next)) == Math.abs(y(index) - y(next))) {
                                 Direction direction = Direction.getDirection(next, index);
                              
@@ -167,7 +167,7 @@ final class Game extends JLayeredPane implements ActionListener {
                                         }
                                     }
                                     
-                                    //legal index
+                                    //index is legal
                                     if (next == index) {
                                         if (captures.size() == maxCapture) {//move
                                             new Thread(new BoardMove(player, new Move(captures, index).getBoardMove(selected))).start();
@@ -269,7 +269,7 @@ final class Game extends JLayeredPane implements ActionListener {
             char piece = board[index];
             HashSet<Move> pieceMoves = new HashSet();
 
-            //horizontal x ertical
+            //horizontal x vertical
             for (Direction[] horizontal : new Direction[][] {{Direction.MIN_X_MIN_Y, Direction.MIN_X_PLUS_Y}, {Direction.PLUS_X_MIN_Y, Direction.PLUS_X_PLUS_Y}}) {//x -+
                 for (Direction vertical : horizontal) {//y -+
                     //can step
@@ -554,3 +554,4 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
+
