@@ -266,7 +266,7 @@ final class Game extends JLayeredPane implements ActionListener {
 
                             //king steps
                             if (piece == KING[color]) {
-                                while (vertical.hasNext(next) && board[next] == EMPTY) {
+                                while (vertical.hasNext(next) && board[vertical.getNext(next)] == EMPTY) {
                                     next = vertical.getNext(next);
                                     captureMove.add(next);
                                 }
@@ -547,3 +547,4 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
+
