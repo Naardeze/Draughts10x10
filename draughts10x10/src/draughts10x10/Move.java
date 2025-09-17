@@ -1,0 +1,44 @@
+package draughts10x10;
+
+import java.util.ArrayList;
+
+/* Move
+ *
+ * captures
+ * to
+ * 
+ * pieceMove (from) -> animation
+ */
+
+final class Move {
+    final private ArrayList<Integer> captures;
+    final private int to;
+    
+    Move(int to) {
+        this(new ArrayList(), to);
+    }
+    
+    Move(ArrayList<Integer> captures, int to) {
+        this.captures = captures;
+        this.to = to;
+    }
+    
+    ArrayList<Integer> getCaptures() {
+        return captures;
+    }
+    
+    int getTo() {
+        return to;
+    }   
+    
+    //<from, <captures>, to> (used in animation)
+    ArrayList<Integer> getPieceMove(int from) {
+        ArrayList<Integer> pieceMove = new ArrayList(captures);
+        
+        pieceMove.add(0, from);
+        pieceMove.add(to);
+        
+        return pieceMove;
+    }
+    
+}
