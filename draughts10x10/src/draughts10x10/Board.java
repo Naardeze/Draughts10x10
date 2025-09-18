@@ -8,7 +8,7 @@ import javax.swing.JComponent;
  *
  * parent board class
  * 
- * square
+ * square[]
  * 
  * -paintSquare (static)
  */
