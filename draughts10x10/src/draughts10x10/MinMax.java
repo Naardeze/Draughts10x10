@@ -122,7 +122,7 @@ final class MinMax extends HashMap<String, Integer> {//<position, value>
                 ANTI_DIAGONAL[i] = 0l;
         
                 //0-4-44
-                for (int j = 0, bit = Math.min(i, COLUMN - 1) + Math.max(0, i - (COLUMN - 1)) * SIZE; j < 2 + (Math.min(i, COLUMN - 1) - Math.max(0, i - (COLUMN - 1))) * 2; j++, bit += COLUMN - bit / COLUMN % 2) {
+                for (int bit = Math.min(i, COLUMN - 1) + Math.max(0, i - (COLUMN - 1)) * SIZE, j = 0; j < 2 + (Math.min(i, COLUMN - 1) - Math.max(0, i - (COLUMN - 1))) * 2; j++, bit += COLUMN - bit / COLUMN % 2) {
                     ANTI_DIAGONAL[i] ^= 1l << bit;
                 }
             }
