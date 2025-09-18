@@ -429,7 +429,7 @@ final class Game extends JLayeredPane implements ActionListener {
             
             this.color = color;
             
-            if (color == player) {//player
+            if (color == player) {
                 hintBoard.setVisible(false);
                 UNDO.setEnabled(false);
                 positions.push(positionBoard.getPosition());
