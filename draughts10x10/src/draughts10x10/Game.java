@@ -291,7 +291,7 @@ final class Game extends JLayeredPane implements ActionListener {
 
                                 //check captureMoves
                                 do {
-                                    ArrayList<Integer> move = captureMoves.remove(0);//<<capturesMove>, <empty>>
+                                    ArrayList<Integer> move = captureMoves.remove(0);//<<captureMove>, <empty>>
                                     ArrayList<Integer> captures = new ArrayList();
 
                                     //captures <-> empty
