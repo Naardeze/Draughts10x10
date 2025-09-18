@@ -15,6 +15,7 @@ import static draughts10x10.SquareBoard.y;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +30,6 @@ import java.util.HashSet;
 import java.util.Stack;
 import javax.swing.JLayeredPane;
 import static draughts10x10.Draughts10x10.SQUAREBOARD;
-import java.awt.Point;
 
 /* Game
  *
