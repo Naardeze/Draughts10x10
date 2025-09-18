@@ -458,7 +458,7 @@ final class Game extends JLayeredPane implements ActionListener {
                 do {
                     index = direction.getNext(index);
                     
-                    //this -> square[to]
+                    //point -> square[to]
                     for (int horizontal = square[index].x - point.x, vertical = square[index].y - point.y, i = FRAMES - 1; i >= 0; i--) {
                         point.setLocation(square[index].x - (int) (i * (float) horizontal / FRAMES), square[index].y - (int) (i * (float) vertical / FRAMES));
                         
