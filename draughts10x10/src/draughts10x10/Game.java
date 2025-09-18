@@ -42,8 +42,7 @@ import java.awt.Point;
  * enum Direction -> move in 4 directions
 */
 
-final class Game extends JLayeredPane implements ActionListener {
-    //move in 4 directions
+final class Game extends JLayeredPane implements ActionListener {
     private static enum Direction {
         MIN_X_MIN_Y(-1, -1),
         PLUS_X_MIN_Y(1, -1),
