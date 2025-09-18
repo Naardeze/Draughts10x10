@@ -13,6 +13,7 @@ import static draughts10x10.Draughts10x10.SQUAREBOARD;
 */
 
 final class HintBoard extends Board {
+    //display hint
     final static int NOT_SELECTED = -1;
     
     //selected, hint color
