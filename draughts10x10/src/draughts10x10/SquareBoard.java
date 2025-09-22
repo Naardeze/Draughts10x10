@@ -61,12 +61,12 @@ final class SquareBoard extends Board implements ActionListener {
         setLayout(new BorderLayout());//adding game
     }
 
-    //column
+    //<-column
     static int x(int index) {
         return index % (GRID / 2) * 2 + 1 - index / (GRID / 2) % 2;
     }
 
-    //row
+    //<-row
     static int y(int index) {
         return index / (GRID / 2);
     }
@@ -98,3 +98,4 @@ final class SquareBoard extends Board implements ActionListener {
         } catch (IOException ex) {}
     }
 }
+
