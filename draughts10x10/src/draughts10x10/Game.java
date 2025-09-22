@@ -47,7 +47,7 @@ final class Game extends JLayeredPane implements ActionListener {
     final private PositionBoard positionBoard = new PositionBoard();
     final private HintBoard hintBoard = new HintBoard();
 
-    //player positions (used for undo move)
+    //player positions (undo move)
     final private Stack<String> positions = new Stack();
     
     //player color
@@ -508,3 +508,4 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
