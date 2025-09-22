@@ -25,7 +25,7 @@ import javax.swing.JSlider;
 /**
  * Draughts10x10 (main)
  * 
- * Game (WHITE, BLACK)
+ * new game (WHITE, BLACK)
  * AI (1-7)
  * 
  * undo move
@@ -147,5 +147,6 @@ final class Draughts10x10 extends JFrame {
     }
     
 }
+
 
 
