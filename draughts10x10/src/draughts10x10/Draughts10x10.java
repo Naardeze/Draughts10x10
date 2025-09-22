@@ -1,6 +1,7 @@
 package draughts10x10;
 
 import static draughts10x10.PositionBoard.WB;
+import static draughts10x10.SquareBoard.GRID;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -20,7 +21,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import static draughts10x10.SquareBoard.GRID;
 
 /**
  * Draughts10x10 (main)
@@ -146,3 +146,4 @@ final class Draughts10x10 extends JFrame {
     }
     
 }
+
