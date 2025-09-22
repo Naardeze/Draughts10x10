@@ -34,6 +34,7 @@ import javax.swing.JSlider;
  * 
  * @author Naardeze
 */
+
 final class Draughts10x10 extends JFrame {
     //color
     final public static int WHITE = 0;
@@ -50,11 +51,10 @@ final class Draughts10x10 extends JFrame {
     final public static JLabel GAME_OVER = new JLabel("Game Over", JLabel.CENTER);//game over text
     final public static JCheckBox HINT = new JCheckBox("Hint");//hint on/off
     
-    //current game
     private Game game = new Game(WHITE);
     
     private Draughts10x10(int boardSize) {
-        super("Draughts");
+        super("Draughts10x10");
 
         JMenuBar menuBar = new JMenuBar();//menu, AI
         JMenu menu = new JMenu("Game");//WHITE, BLACK
@@ -84,13 +84,14 @@ final class Draughts10x10 extends JFrame {
 
         SQUAREBOARD.setPreferredSize(new Dimension(boardSize, boardSize));
         SQUAREBOARD.addContainerListener(new ContainerAdapter() {
+            //game on/off SQUAREBOARD
             @Override
             public void componentAdded(ContainerEvent e) {
-                UNDO.addActionListener((Game) e.getChild());//game on SQUAREBOARD
+                UNDO.addActionListener((Game) e.getChild());
             }        
             @Override
             public void componentRemoved(ContainerEvent e) {
-                UNDO.removeActionListener((Game) e.getChild());//game off SQUAREBOARD
+                UNDO.removeActionListener((Game) e.getChild());
             }
         });
         SQUAREBOARD.add(game, BorderLayout.CENTER);
@@ -146,4 +147,5 @@ final class Draughts10x10 extends JFrame {
     }
     
 }
+
 
