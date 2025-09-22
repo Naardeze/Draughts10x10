@@ -37,6 +37,10 @@ import static draughts10x10.SquareBoard.GRID;
  * undo move
  * move animation
  *
+ * -turn -> loop and logic
+ * -actionPerformed -> undo move
+ *
+ * PieceMove -> move animation
  * enum Direction -> move in 4 directions
  *
  * @author Naardeze
@@ -512,6 +516,7 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
 
 
 
