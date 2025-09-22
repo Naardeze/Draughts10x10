@@ -1,12 +1,11 @@
 # Draughts10x10
 Java Swing International Draughts with AI
 
-game (white or black)
+-new game (white or black)
 
-AI search depth (1-=7)
+-AI search depth (1-7)
 
-undo move
+-undo move
 
-moveable pieces (on/off)
-
-rotate board
+-moveable pieces (on/off)
+-rotate board
