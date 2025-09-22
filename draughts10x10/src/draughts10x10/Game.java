@@ -368,9 +368,9 @@ final class Game extends JLayeredPane implements ActionListener {
     }
    
      //animation constants
-    final private static int FRAMES = 40;//frames p square
+    final private static int FRAMES = 32;//frames p square
     final private static int MILLI = 4;//milliseconds p frame
-    final private static int DELAY = 140;//milliseconds delay time
+    final private static int DELAY = 120;//milliseconds delay time
     
     //animation: move, promotion, captures
     private class PieceMove extends Board implements Runnable {
@@ -514,6 +514,7 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
 
 
 
