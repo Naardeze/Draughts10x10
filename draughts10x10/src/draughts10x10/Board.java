@@ -12,7 +12,7 @@ import javax.swing.JComponent;
  * parent board (abstract)
  * 
  * PIECE images
- * squares
+ * square
  * 
  * -paintSquare (static)
  * 
@@ -34,3 +34,4 @@ abstract class Board extends JComponent {
     }
     
 }
+
