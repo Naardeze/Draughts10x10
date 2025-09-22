@@ -54,7 +54,7 @@ final class Game extends JLayeredPane implements ActionListener {
     final private int player;
     
     //used in turn
-    private HashSet<Integer>[] pieces = new HashSet[WB.length()];//<WHITE> <BLACK>
+    private HashSet<Integer>[] pieces = new HashSet[WB.length()];//WHITE, BLACK
     private HashMap<Integer, Move[]> moves;//legal moves
     private int maxCapture;//captures p move
     
@@ -508,6 +508,7 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
 
 
 
