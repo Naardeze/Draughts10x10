@@ -206,7 +206,7 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
             position[from] = piece;
         }
         
-        //move value
+        //<-move value
         return alfaBeta[node.ordinal()];
     }
 
@@ -220,7 +220,7 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
         
         captures.forEach(capture -> position[capture] = EMPTY);
         
-        //key
+        //<-key
         return position;
     }
 
@@ -273,7 +273,7 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
             position[from] = piece;
         }
         
-        //ai move
+        //<-ai move
         return bestMoves.get((int) (Math.random() * bestMoves.size()));
     }
     
@@ -394,3 +394,4 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
     }
 
 }
+
