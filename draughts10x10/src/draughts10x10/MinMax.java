@@ -3,11 +3,11 @@ package draughts10x10;
 import static draughts10x10.Game.KING;
 import static draughts10x10.Game.PAWN;
 import static draughts10x10.PositionBoard.EMPTY;
+import static draughts10x10.SquareBoard.GRID;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import static draughts10x10.SquareBoard.GRID;
 
 /**
  * MinMax
@@ -396,5 +396,6 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
     }
 
 }
+
 
 
