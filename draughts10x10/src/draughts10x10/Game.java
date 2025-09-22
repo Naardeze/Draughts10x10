@@ -106,7 +106,7 @@ final class Game extends JLayeredPane implements ActionListener {
                                         }
                                     }
                                     
-                                    if (step == index) {//index=legal
+                                    if (step == index) {//index is legal
                                         if (captures.size() == maxCapture) {//pieceMove
                                             new Thread(new PieceMove(player, new Move(captures, index).getMove(selected))).start();
                                         } else {//continue
@@ -119,7 +119,7 @@ final class Game extends JLayeredPane implements ActionListener {
                                     }
                                 }
                             }
-                        //index=occupied
+                        //index is not empty
                         } else if (positionBoard.getIndex(index) != EMPTY) {
                             positionBoard.getMove().clear();
                             
@@ -147,7 +147,7 @@ final class Game extends JLayeredPane implements ActionListener {
                             }
                         
                             repaint();
-                        //selected, index=empty
+                        //is selected
                         } else if (moves.containsKey(selected)) {
                             for (Move move : moves.get(selected)) {
                                 if (move.getTo() == index) {
@@ -260,7 +260,8 @@ final class Game extends JLayeredPane implements ActionListener {
                                         maxCapturePiece++;
                                     }
 
-                                    for (int step : move) {//empty square(s)
+                                    //empty square(s)
+                                    for (int step : move) {
                                         if (captures.size() == maxCapturePiece) {
                                             movesPiece.add(new Move(captures, step));
                                         }
@@ -367,7 +368,7 @@ final class Game extends JLayeredPane implements ActionListener {
         turn(player);
     }
    
-     //animation constants
+    //animation constants
     final private static int FRAMES = 32;//frames p square
     final private static int MILLI = 4;//milliseconds p frame
     final private static int DELAY = 120;//milliseconds delay time
@@ -514,6 +515,7 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
 
 
 
