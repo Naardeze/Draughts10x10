@@ -14,12 +14,14 @@ import static draughts10x10.SquareBoard.GRID;
  * 
  * basic minimax algoritm with alfa beta pruning
  * 
- * -valueOf -> move value
- * -getPosition (static) -> moved board
+ * -valueOf -> alfa beta value
+ * -getPosition (static) -> position -> move -> key
  * -getAIMove (static) -> best move
  * 
  * enum Node -> evaluation
  * enum Diagonal -> move in 4 directions (bitboards)
+ *
+ * Special Thanx to Logic Crazy Chess!!
  * 
  * @author Naardeze
  */
@@ -394,4 +396,5 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
     }
 
 }
+
 
