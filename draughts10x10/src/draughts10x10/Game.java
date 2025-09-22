@@ -315,7 +315,7 @@ final class Game extends JLayeredPane implements ActionListener {
             }
         }
         
-        //2 evaluation
+        //2 (evaluation)
         if (getParent() == SQUAREBOARD) {//continue only if this (game) is on SQUAREBOARD
             if (moves.isEmpty()) {//game over
                 GAME_OVER.setVisible(true);
@@ -508,4 +508,5 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
 
