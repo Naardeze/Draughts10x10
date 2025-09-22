@@ -31,10 +31,14 @@ import javax.swing.JLayeredPane;
 import static draughts10x10.SquareBoard.GRID;
 
 /**
- * Game (loop and logic)
- * 
- * undo move, animation
- * 
+ * Game
+ *
+ * game loop and logic
+ * undo move
+ * move animation
+ *
+ * enum Direction -> move in 4 directions
+ *
  * @author Naardeze
  */
 
@@ -113,7 +117,7 @@ final class Game extends JLayeredPane implements ActionListener {
                                     }
                                 }
                             }
-                        //index = occupied
+                        //index=occupied
                         } else if (positionBoard.getIndex(index) != EMPTY) {
                             positionBoard.getMove().clear();
                             
@@ -141,7 +145,7 @@ final class Game extends JLayeredPane implements ActionListener {
                             }
                         
                             repaint();
-                        //selected, index = empty
+                        //selected, index=empty
                         } else if (moves.containsKey(selected)) {
                             for (Move move : moves.get(selected)) {
                                 if (move.getTo() == index) {
@@ -341,7 +345,7 @@ final class Game extends JLayeredPane implements ActionListener {
         }
     }
     
-    //undo player move -> gameover or player has turn
+    //undo player move -> gameover or turn player
     @Override
     public void actionPerformed(ActionEvent e) {
         UNDO.setEnabled(false);
@@ -352,7 +356,7 @@ final class Game extends JLayeredPane implements ActionListener {
             hintBoard.setVisible(false);
         }
         
-        //prepare next (=previous) turn
+        //prepare next (previous) turn
         positionBoard.getMove().clear();
         positionBoard.setPosition(positions.pop());
         positionBoard.repaint();
@@ -445,7 +449,7 @@ final class Game extends JLayeredPane implements ActionListener {
                 Thread.sleep(DELAY);
             } catch (Exception ex) {}
             
-            //captures
+            //capture
             for (int i = 0; i < maxCapture; i++) {
                 positionBoard.setIndex(positionBoard.getMove().remove(0), EMPTY);
                 positionBoard.repaint();
@@ -508,6 +512,7 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
 
 
 
