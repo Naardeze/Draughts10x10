@@ -33,9 +33,7 @@ import static draughts10x10.SquareBoard.GRID;
 /**
  * Game
  *
- * game loop and logic
- *
- * -turn(color) -> get moves -> evaluation (gameover or move)
+ * -turn(color) -> game loop and logic
  * -actionPerformed -> undo move
  *
  * PieceMove -> animation
@@ -515,6 +513,7 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
 
 
 
