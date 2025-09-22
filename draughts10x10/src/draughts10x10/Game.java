@@ -77,7 +77,7 @@ final class Game extends JLayeredPane implements ActionListener {
                             ArrayList<Integer> captures = new ArrayList(positionBoard.getMove());
                             int step = captures.remove(captures.size() - 1);
                             
-                            //x==y
+                            //x=y
                             if (index != step && Math.abs(x(index) - x(step)) == Math.abs(y(index) - y(step))) {
                                 Direction direction = Direction.getDirection(step, index);
                              
@@ -508,6 +508,7 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
 
 
 
