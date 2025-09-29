@@ -25,7 +25,7 @@ import javax.swing.JSlider;
  * Draughts10x10 (main)
  * 
  * Game (WHITE, BLACK) -> new game
- * AI (1-7) -> search depth
+ * AI (1-7) -> search depth (moves + 1-7 + depth=0 while captures>0)
  * 
  * undo (player) move 
  * hint on/off (moveable pieces)
@@ -147,6 +147,7 @@ final class Draughts10x10 extends JFrame {
     }
     
 }
+
 
 
 
