@@ -29,7 +29,7 @@ import javax.swing.JSlider;
  * 
  * undo move (player turn or game over)
  * hint on/off (show moveable pieces (player -> mouse input))
- * rotate board (1-50 -> 50-1 -> etc)
+ * rotate board (wb->bw->wb etc)
  * 
  * @author Naardeze
 */
@@ -147,4 +147,5 @@ final class Draughts10x10 extends JFrame {
     }
     
 }
+
 
