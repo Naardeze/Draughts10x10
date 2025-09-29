@@ -53,7 +53,7 @@ final class Draughts10x10 extends JFrame {
     //current game
     private Game game = new Game(WHITE);
     
-    private Draughts10x10(int boardSize) {//500 (SQUAREBOARD, game(positionBoard, hintBoard))
+    private Draughts10x10(int boardSize) {//500
         super("Draughts10x10");
 
         JMenuBar menuBar = new JMenuBar();//menu, AI
@@ -147,3 +147,4 @@ final class Draughts10x10 extends JFrame {
     }
     
 }
+
