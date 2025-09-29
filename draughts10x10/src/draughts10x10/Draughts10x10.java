@@ -27,8 +27,8 @@ import javax.swing.JSlider;
  * Game (WHITE, BLACK) -> new game
  * AI (1-7) -> search depth
  * 
- * undo move (player turn or game over)
- * hint on/off (show moveable pieces (player -> mouse input))
+ * undo (player) move 
+ * hint on/off (moveable pieces)
  * rotate board (wb->bw->wb etc)
  * 
  * @author Naardeze
@@ -147,5 +147,6 @@ final class Draughts10x10 extends JFrame {
     }
     
 }
+
 
 
