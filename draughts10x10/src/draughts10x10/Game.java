@@ -221,10 +221,9 @@ final class Game extends JLayeredPane implements ActionListener {
         
         //positionBoard on top
         add(positionBoard, new Integer(1));
-        //hintBoard under
         add(hintBoard);
         
-        //1: size hintBoard and positionBoard
+        //1: size boards
         //2: begin game (first turn)
         addComponentListener(new ComponentAdapter() {
             @Override
@@ -565,3 +564,4 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
+
