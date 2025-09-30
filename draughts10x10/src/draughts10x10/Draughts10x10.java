@@ -46,7 +46,7 @@ final class Draughts10x10 extends JFrame {
     final static SquareBoard SQUAREBOARD = new SquareBoard();
     
     //static components
-    final static JButton UNDO = new JButton(new ImageIcon(Toolkit.getDefaultToolkit().createImage("arrow.png")));
+    final static JButton UNDO = new JButton(new ImageIcon("arrow.png"));
     final static JLabel GAME_OVER = new JLabel("Game Over", JLabel.CENTER);
     final static JCheckBox HINT = new JCheckBox("Hint");
     
@@ -151,3 +151,4 @@ final class Draughts10x10 extends JFrame {
     }
     
 }
+
