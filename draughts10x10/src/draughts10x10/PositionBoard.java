@@ -79,8 +79,6 @@ final class PositionBoard extends JComponent {
     
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
         //move
         for (int index : move) {
             g.setColor(new Color[] {Color.yellow, Color.green}[(move.indexOf(index) + 1) / move.size()]);//<0..0, 1>
@@ -104,3 +102,4 @@ final class PositionBoard extends JComponent {
     }
     
 }
+
