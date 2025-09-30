@@ -62,8 +62,6 @@ final class SquareBoard extends JPanel implements ActionListener {
 
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        
         //background (wood)
         g.drawImage(WOOD, 0, 0, this);
         
@@ -89,3 +87,4 @@ final class SquareBoard extends JPanel implements ActionListener {
     }
 
 }
+
