@@ -80,6 +80,7 @@ final class Draughts10x10 extends JFrame {
             });
         }
 
+        //no digits -> no extra distraction, 1 tick=1 depth
         AI.setMajorTickSpacing(1);
         AI.setPaintTicks(true);
         AI.setOpaque(false);
@@ -151,4 +152,5 @@ final class Draughts10x10 extends JFrame {
     }
     
 }
+
 
