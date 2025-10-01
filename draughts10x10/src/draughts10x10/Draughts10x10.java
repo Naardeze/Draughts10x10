@@ -69,7 +69,7 @@ final class Draughts10x10 extends JFrame {
         JPanel left = new JPanel();//UNDO
         JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT));//HINT, rotation
 
-        //new game
+        //menu
         for (int color : new int[] {WHITE, BLACK}) {
             menu.add(new JMenuItem(new String[] {"White", "Black"}[color], new ImageIcon(Toolkit.getDefaultToolkit().getImage(WB.toCharArray()[color] + ".png").getScaledInstance(24, 24, Image.SCALE_SMOOTH)))).addActionListener(e -> {
                 SQUAREBOARD.remove(game);
