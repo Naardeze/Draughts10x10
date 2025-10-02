@@ -96,10 +96,10 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
                                 empty ^= 1l << index;
                                 
                                 do {
-                                    //captures and empty
+                                    //captureMove
                                     move = captureMoves.remove(0);
 
-                                    //is captured
+                                    //captured
                                     long captures = move & opponent;
                                     
                                     //maxCapturePiece+1
@@ -453,4 +453,5 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
     }
 
 }
+
 
