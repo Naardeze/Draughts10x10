@@ -31,10 +31,8 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
     final private static int COLUMN = GRID / 2;//5
     final private static int ROW = GRID - 1;//9
     
-    //max
-    final private static int ALFA = Integer.MAX_VALUE;
-    //min
-    final private static int BETA = Integer.MIN_VALUE;
+    final private static int ALFA = Integer.MAX_VALUE;//max
+    final private static int BETA = Integer.MIN_VALUE;//min
         
     //can move 4 directions (x>0 & x<9 & y>0 & y<9)
     private static long middle = 0l;
@@ -453,5 +451,6 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
     }
 
 }
+
 
 
