@@ -34,7 +34,7 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
     final private static int ALFA = Integer.MAX_VALUE;//max
     final private static int BETA = Integer.MIN_VALUE;//min
         
-    //can move 4 directions (x>0 & x<9 & y>0 & y<9)
+    //x>0 & x<9 & y>0 & y<9
     private static long middle = 0l;
 
     final private Node node;
@@ -451,6 +451,7 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
     }
 
 }
+
 
 
 
