@@ -67,7 +67,8 @@ final class SquareBoard extends JPanel implements ActionListener {
                     PIECE[0][WB.indexOf(piece)] = Toolkit.getDefaultToolkit().getImage(piece + ".png").getScaledInstance(width, height, Image.SCALE_SMOOTH);//pawn
                     PIECE[1][WB.indexOf(piece)] = Toolkit.getDefaultToolkit().getImage(piece + "" + piece + ".png").getScaledInstance(width, height, Image.SCALE_SMOOTH);//king
                 }
-                
+
+                //Naardeze
                 setFont(getFont().deriveFont(Font.BOLD, height / 5));
             }
         });
@@ -97,7 +98,8 @@ final class SquareBoard extends JPanel implements ActionListener {
         for (Rectangle square : square) {
             paintSquare(g, square);
         }
-        
+
+        //Naardeze
         g.drawString(NAARDEZE, getWidth() - g.getFontMetrics().stringWidth(NAARDEZE), getHeight());
     }
 
@@ -118,3 +120,4 @@ final class SquareBoard extends JPanel implements ActionListener {
     }
 
 }
+
