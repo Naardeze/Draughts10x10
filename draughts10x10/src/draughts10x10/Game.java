@@ -64,10 +64,9 @@ final class Game extends JLayeredPane implements ActionListener {
     private int maxCapture;//captures move
     
     Game(int player) {
-        //color
         this.player = player;
 
-        //prepare GUI
+        //GUI
         UNDO.setEnabled(false);
         GAME_OVER.setVisible(false);
 
@@ -84,13 +83,12 @@ final class Game extends JLayeredPane implements ActionListener {
                             ArrayList<Integer> captures = new ArrayList(positionBoard.getMove());
                             int step = captures.remove(captures.size() - 1);
                             
-                            //x==y
+                            //x==y (diagonal)
                             if (index != step && Math.abs(x(index) - x(step)) == Math.abs(y(index) - y(step))) {
                                 Direction direction = Direction.getDirection(step, index);
                              
                                 step = direction.getStep(step);
                               
-                                //king steps
                                 if (positionBoard.getIndex(selected) == KING[player]) {
                                     while (step != index && (positionBoard.getIndex(step) == EMPTY || step == selected)) {
                                         step = direction.getStep(step);
@@ -170,12 +168,10 @@ final class Game extends JLayeredPane implements ActionListener {
         add(positionBoard, new Integer(1));
         add(hintBoard);
         
-        //1: size hintBoard and positionBoard
-        //2: begin game (first turn)
+        //size boards and begin game (first turn)
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                //1 size boards
                 hintBoard.setSize(getSize());
                 positionBoard.setSize(getSize());
    
@@ -255,7 +251,7 @@ final class Game extends JLayeredPane implements ActionListener {
 
                                 position[index] = EMPTY;
 
-                                //extra captures
+                                //check for extra captures
                                 do {
                                     ArrayList<Integer> move = captureMoves.remove(0);//<<captures>, <empty>>
                                     ArrayList<Integer> captures = new ArrayList();
@@ -269,7 +265,7 @@ final class Game extends JLayeredPane implements ActionListener {
                                         maxCapturePiece++;
                                     }
 
-                                    for (int to : move) {
+                                    for (int to : move) {//empty
                                         if (captures.size() == maxCapturePiece) {
                                             movesPiece.add(new Move(captures, to));
                                         }
@@ -511,3 +507,4 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
+
