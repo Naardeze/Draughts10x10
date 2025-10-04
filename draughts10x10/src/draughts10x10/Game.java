@@ -90,7 +90,6 @@ final class Game extends JLayeredPane implements ActionListener {
                              
                                 step = direction.getStep(step);
                               
-                                //king steps
                                 if (positionBoard.getIndex(selected) == KING[player]) {
                                     while (step != index && (positionBoard.getIndex(step) == EMPTY || step == selected)) {
                                         step = direction.getStep(step);
@@ -511,3 +510,4 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
+
