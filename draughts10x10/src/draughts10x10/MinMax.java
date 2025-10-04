@@ -13,7 +13,7 @@ import java.util.HashSet;
 /**
  * MinMax
  * 
- * basic minimax algoritm with alfa beta pruning, keeps searching while position contains captures
+ * basic minimax algoritm with alfa beta pruning, keeps searching while maxCapture > 0
  * extends HashMap -> position, alfaBeta -> no dubbel calculations
  * 
  * enum Node -> evaluation
@@ -98,8 +98,8 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
                                         movesPiece.add(move);
                                     }
                                     
-                                    for (long destinations = move & empty; destinations != 0l; destinations ^= Long.lowestOneBit(destinations)) {
-                                        int to = Long.numberOfTrailingZeros(destinations);
+                                    for (long destination = move & empty; destination != 0l; destination ^= Long.lowestOneBit(destination)) {
+                                        int to = Long.numberOfTrailingZeros(destination);
 
                                         for (Diagonal diagonal : Diagonal.values()) {
                                             if (diagonal.canStep(to)) {
@@ -406,3 +406,4 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
     }
 
 }
+
