@@ -403,9 +403,9 @@ final class Game extends JLayeredPane implements ActionListener {
             positionBoard.add(this);
         }
         
-        //animation
         @Override
         public void run() {
+            //animation
             Direction direction = Direction.getDirection(index, positionBoard.getMove().get(0));
 
             for (int step : positionBoard.getMove()) {
@@ -510,3 +510,4 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
+
