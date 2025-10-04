@@ -128,7 +128,7 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
                                             }
                                         }
                                     }
-                                } while (!captureMoves.isEmpty());//all capture moves checked
+                                } while (!captureMoves.isEmpty());//all captureMves checked
                                 
                                 empty ^= 1l << index;
                             }
@@ -406,4 +406,5 @@ final class MinMax extends HashMap<String, Integer> {//<position, move value>
     }
 
 }
+
 
