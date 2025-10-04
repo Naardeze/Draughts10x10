@@ -52,7 +52,7 @@ final class Game extends JLayeredPane implements ActionListener {
     final private PositionBoard positionBoard = new PositionBoard();
     final private HintBoard hintBoard = new HintBoard();
 
-    //player positions (used for undo move)
+    //undo move
     final private Stack<String> positions = new Stack();
     
     //player color
@@ -60,8 +60,8 @@ final class Game extends JLayeredPane implements ActionListener {
     
     //used in turn
     private HashSet<Integer>[] pieces = new HashSet[WB.length()];//pieces WHITE & BLACK
-    private HashMap<Integer, Move[]> moves;//moves p piece
-    private int maxCapture;//captures move
+    private HashMap<Integer, Move[]> moves;//legal moves
+    private int maxCapture;//capture size
     
     Game(int player) {
         //color
@@ -148,7 +148,7 @@ final class Game extends JLayeredPane implements ActionListener {
                             }
                         
                             repaint();
-                        //selected, index is empty
+                        //index is empty & selected!=NOT_SELECTED
                         } else if (moves.containsKey(selected)) {
                             for (Move move : moves.get(selected)) {
                                 if (move.getTo() == index) {//move
@@ -510,5 +510,6 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
+
 
 
