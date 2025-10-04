@@ -306,7 +306,7 @@ final class Game extends JLayeredPane implements ActionListener {
                                             }
                                         }
                                     }
-                                } while (!captureMoves.isEmpty());//all capture moves checked
+                                } while (!captureMoves.isEmpty());//all captureMoves checked
 
                                 position[index] = piece;
                             }
@@ -510,4 +510,5 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
+
 
