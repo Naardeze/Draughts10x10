@@ -32,6 +32,7 @@ import javax.swing.JLayeredPane;
 
 /**
  * Game 
+ * loop logic and animation
  * 
  * enum Direction -> move in 4 directions (x, y)
  *
@@ -507,4 +508,5 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
+
 
