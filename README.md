@@ -13,6 +13,7 @@ Undo player move
 
 Rotate board
 
-Basic AI (uses bitboards) with alfa beta pruning (1-7 depth) continues while board contains captures.
+Basic AI (bitboards) with alfa beta pruning continues while board contains captures.
+Value 1-5 -> x2 moves (alfa&beta)
 
 Move animation
