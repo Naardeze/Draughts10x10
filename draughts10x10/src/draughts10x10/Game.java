@@ -41,7 +41,7 @@ import static draughts10x10.Draughts10x10.SQUAREBOARD;
  * 
  * enum Direction -> move in 4 directions (x, y)
  * 
- * BoardMove -> animation
+ * BoardMove -> animation (move, promotion, capture)
  * 
  * @author Naardeze
  */
@@ -524,3 +524,4 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
+
