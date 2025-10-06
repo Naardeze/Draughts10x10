@@ -148,7 +148,7 @@ final class Draughts10x10 extends JFrame {
 
     public static void main(String[] args)throws Exception {
         //BOARD10X10 size
-        final int boardSize = 500;
+        final int boardSize = 520;
         
         //start Draughts10x10
         new Draughts10x10(boardSize);

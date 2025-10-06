@@ -1,10 +1,10 @@
 package draughts10x10;
 
+import static draughts10x10.Board10x10.GRID;
 import static draughts10x10.Draughts10x10.AI;
 import static draughts10x10.Game.KING;
 import static draughts10x10.Game.PAWN;
 import static draughts10x10.PositionBoard.EMPTY;
-import static draughts10x10.Board10x10.GRID;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;

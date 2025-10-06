@@ -31,7 +31,7 @@ import javax.swing.JPanel;
 */
 
 final class Board10x10 extends JPanel implements ActionListener {    
-    //grid size
+    //size
     final static int GRID = 10;
     
     //background

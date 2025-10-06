@@ -1,6 +1,10 @@
 package draughts10x10;
 
+import static draughts10x10.Board10x10.GRID;
+import static draughts10x10.Board10x10.x;
+import static draughts10x10.Board10x10.y;
 import static draughts10x10.Draughts10x10.BLACK;
+import static draughts10x10.Draughts10x10.BOARD10X10;
 import static draughts10x10.Draughts10x10.GAME_OVER;
 import static draughts10x10.Draughts10x10.UNDO;
 import static draughts10x10.Draughts10x10.WHITE;
@@ -8,9 +12,6 @@ import static draughts10x10.HintBoard.NOT_SELECTED;
 import static draughts10x10.PositionBoard.EMPTY;
 import static draughts10x10.PositionBoard.PIECE;
 import static draughts10x10.PositionBoard.WB;
-import static draughts10x10.Board10x10.GRID;
-import static draughts10x10.Board10x10.x;
-import static draughts10x10.Board10x10.y;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Graphics;
@@ -28,7 +29,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Stack;
 import javax.swing.JLayeredPane;
-import static draughts10x10.Draughts10x10.BOARD10X10;
 
 /**
  * Game
