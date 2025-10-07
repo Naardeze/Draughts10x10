@@ -61,7 +61,7 @@ final class Draughts10x10 extends JFrame {
         
         JButton rotation = new JButton("\ud83d\udd04");//rotate SQUAREBOARD
 
-        JPanel center = new JPanel();//BOARD10x10
+        JPanel center = new JPanel();//SQUAREBOARD
         JPanel south = new JPanel(new GridLayout(1, 3));//left, GAME_OVER, right
 
         JPanel left = new JPanel();//UNDO
@@ -155,4 +155,5 @@ final class Draughts10x10 extends JFrame {
     }
 
 }
+
 
