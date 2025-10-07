@@ -36,7 +36,7 @@ import javax.swing.JLayeredPane;
  * 
  * Gameloop, logic and move animation
  * 
- * -turn (state (moves), evaluation (game_over || move (player (hintBoard) || ai (MinMax))))
+ * -turn (state (moves), evaluation (game_over or move (player (hintBoard) or ai (MinMax))))
  * -actionPerformed (undo move)
  * 
  * enum Direction -> move in 4 directions (x, y)
@@ -524,3 +524,4 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
+
