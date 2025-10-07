@@ -5,13 +5,12 @@ Play against Computer (board 10x10)
 
 White or Black
 
-AI search depth 1-7 (minimax with alfa beta pruning (bitboards))
+AI Search Depth 1-7 (minimax with alfa beta pruning (bitboards))
 
-Hint moveable pieces (on/off)
+Hint Moveable Pieces (on/off)
 
-Undo (player) move
+Undo Move (player)
 
 Rotate board
-
 
 Animation (move, promotion, capture)
