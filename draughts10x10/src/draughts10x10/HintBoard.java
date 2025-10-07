@@ -15,7 +15,7 @@ import java.util.Set;
  * Colors moveable (kset) or pressed (selected) piece(s)
  * 
  * selected
- * hint
+ * keySet
  * 
  * @author Naardeze
 */
