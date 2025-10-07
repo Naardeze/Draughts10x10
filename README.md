@@ -11,6 +11,6 @@ Hint Moveable Pieces (on/off)
 
 Undo Move (player)
 
-Rotate board
+Rotate Board
 
 Animation (move, promotion, capture)
