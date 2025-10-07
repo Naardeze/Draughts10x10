@@ -1,18 +1,18 @@
 # Draughts10x10
-Java Swing International Draughts with AI
+Java Swing International (Polish) Draughts with AI
 
 Board 10x10
 
-Play (polish) draughts against computer,
+Play against computer,
 
-New game white or black.
+white or black.
 
 Hint moveable pieces (on/off)
 
-Undo player move
+Undo (player) move
 
 Rotate board
 
-Basic AI (bitboards) with alfa beta pruning continues while board contains captures.
+AI search depth 1-7 (minimax with alfa beta pruning)
 
-Move animation
+Animation (move, promotion, capture)
