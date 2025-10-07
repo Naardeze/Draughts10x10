@@ -73,12 +73,12 @@ final class Game extends JLayeredPane implements ActionListener {
         GAME_OVER.setVisible(false);
 
         hintBoard.addMouseListener(new MouseAdapter() {
-            ArrayList<Integer> getMove(int index, ArrayList<Integer> move) {
+            ArrayList<Integer> getMove(int from, ArrayList<Integer> move) {
                 hintBoard.setVisible(false);
                 UNDO.setEnabled(false);
                 positions.push(positionBoard.getPosition());
 
-                move.add(0, index);
+                move.add(0, from);
 
                 return move;
             }
@@ -515,3 +515,4 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
+
