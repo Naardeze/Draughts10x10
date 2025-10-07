@@ -1,52 +1,26 @@
 package draughts10x10;
 
-import static draughts10x10.SquareBoard.GRID;
 import static draughts10x10.Game.KING;
 import static draughts10x10.Game.PAWN;
 import static draughts10x10.PositionBoard.EMPTY;
-import java.util.ArrayList;
+import static draughts10x10.SquareBoard.GRID;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
 /**
  * MinMax
  * 
- * Basic minimax algoritme with alfa beta pruning.
- * AI move
+ * Basic minimax algoritm with alfa beta pruning
  * 
+ * enum Node -> evaluation
  * enum Diagonal -> move in 4 directions (bitboards)
  * 
- * Special Thanx to Logic Crazy Chess
- * 
- * @author Naardeze
+ * @author Naardez
  */
 
-enum MinMax {
-    MIN {//beta (player)
-        @Override
-        protected int valueOf(int alfaBeta, int value) {
-            return Math.min(alfaBeta, value);
-        }
-
-        @Override
-        protected int valueOf(int value) {
-            return -value;
-        }
-    },
-    MAX {//alfa (ai)
-        @Override
-        protected int valueOf(int alfaBeta, int value) {
-            return Math.max(alfaBeta, value);
-        }
-
-        @Override
-        protected int valueOf(int value) {
-            return value;
-        }
-    };
-    
-    //constants
+class MinMax extends HashMap<String, Integer> {
     final private static int COLUMN = GRID / 2;//5
     final private static int ROW = GRID - 1;//9
     
@@ -56,14 +30,15 @@ enum MinMax {
     //0<x<9 & 0<y<9
     private static long middle = 0l;
     
-    protected abstract int valueOf(int alfaBeta, int value);
-    protected abstract int valueOf(int value);
+    final private Node node;
+    final private int color;
     
-    //Like Game.turn (don't invent the wheel twice)
-    //1 moves, maxCapture
-    //2 pruning
-    private int valueOf(int color, char[] position, long turn, long opponent, HashMap<String, Integer>[] values, int value, MinMax minMax, int[] alfaBeta, int depth) {
-        //1 (moves, maxCapture)
+    private MinMax(Node node, int color) {
+        this.node = node;
+        this.color = color;
+    }
+    
+    private int valueOf(char[] position, long turn, long opponent, MinMax mm, int value, int[] alfaBeta, int depth) {
         HashMap<Integer, HashSet<Long>> moves = new HashMap();
         int maxCapture = 0;
     
@@ -98,7 +73,7 @@ enum MinMax {
                                 
                                 empty ^= 1l << index;
                                 
-                                //check for extra captures
+                                //check captureMoves
                                 do {
                                     move = captureMoves.remove(0);
 
@@ -108,12 +83,14 @@ enum MinMax {
                                     if (Long.bitCount(captures) >= maxCapturePiece) {
                                         if (Long.bitCount(captures) > maxCapturePiece) {
                                             movesPiece.clear();
+
                                             maxCapturePiece++;
                                         }
                                         
                                         movesPiece.add(move);
                                     }
-                                    
+
+                                    //empty square(s)
                                     for (long destination = move & empty; destination != 0l; destination ^= Long.lowestOneBit(destination)) {
                                         int to = Long.numberOfTrailingZeros(destination);
 
@@ -166,6 +143,7 @@ enum MinMax {
             if (!movesPiece.isEmpty()) {
                 if (maxCapturePiece > maxCapture) {
                     moves.clear();
+
                     maxCapture = maxCapturePiece;
                 }
                 
@@ -183,7 +161,7 @@ enum MinMax {
                 return value;
             }
 
-            value += valueOf(maxCapture);
+            value += node.valueOf(maxCapture);
             
             for (int from : moves.keySet()) {
                 char piece = position[from];
@@ -204,15 +182,15 @@ enum MinMax {
                         int to = Long.numberOfTrailingZeros(destination);                    
                         String key = String.valueOf(getPosition(color, position.clone(), piece, captures, to));
 
-                        if (!values[color].containsKey(key)) {
-                            values[color].put(key, minMax.valueOf(1 - color, key.toCharArray(), opponent ^ capture, turn ^ (1l << from ^ 1l << to), values, value, this, alfaBeta.clone(), depth));
+                        if (!containsKey(key)) {
+                            put(key, mm.valueOf(key.toCharArray(), opponent ^ capture, turn ^ (1l << from ^ 1l << to), this, value, alfaBeta.clone(), depth));
                         }
 
                         // alfaBeta
-                        alfaBeta[ordinal()] = valueOf(alfaBeta[ordinal()], values[color].get(key));
+                        alfaBeta[node.ordinal()] = node.toAlfaBeta(alfaBeta[node.ordinal()], get(key));
 
                         //prune
-                        if (alfaBeta[MAX.ordinal()] >= alfaBeta[MIN.ordinal()]) {
+                        if (alfaBeta[Node.MAX.ordinal()] >= alfaBeta[Node.MIN.ordinal()]) {
                             break pruning;
                         }
                     }
@@ -222,11 +200,10 @@ enum MinMax {
             }
         }        
 
-        //<-value
-        return alfaBeta[ordinal()];
+        return alfaBeta[node.ordinal()];
     }
     
-    //position->key
+     //position->key
     private static char[] getPosition(int color, char[] position, char piece, ArrayList<Integer> captures, int to) {
         if (piece == PAWN[color] && to / COLUMN == color * ROW) {
             piece = KING[color];
@@ -240,15 +217,17 @@ enum MinMax {
         return position;
     }
     
-    static ArrayList<Integer> getAIMove(int color, char[] position, HashSet<Integer>[] pieces, HashMap<Integer, ArrayList<Integer>[]> moves, int maxCapture, int ai) {
+    static ArrayList<Integer> getAIMove(int ai, char[] position, HashSet<Integer>[] pieces, HashMap<Integer, ArrayList<Integer>[]> moves, int maxCapture, int depth) {
+        int player = 1 - ai;
+        
         long turn = 0l;
         long opponent = 0l;
 
-        for (int index : pieces[color]) {
+        for (int index : pieces[ai]) {
             turn ^= 1l << index;
         }
         
-        for (int index : pieces[1 - color]) {
+        for (int index : pieces[player]) {
             opponent ^= 1l << index;
         }
 
@@ -269,7 +248,7 @@ enum MinMax {
                     capture ^= 1l << index;
                 }
                 
-                int min = MIN.valueOf(1 - color, getPosition(color, position.clone(), piece, move, to), opponent ^ capture, turn ^ (1l << from ^ 1l << to), new HashMap[] {new HashMap(), new HashMap()}, maxCapture, MAX, new int[] {ALFA, BETA}, ai);
+                int min = new MinMax(Node.MIN, player).valueOf(getPosition(ai, position.clone(), piece, move, to), opponent ^ capture, turn ^ (1l << from ^ 1l << to), new MinMax(Node.MAX, ai), maxCapture, new int[] {ALFA, BETA}, depth);
                 
                 //alfaMove
                 if (min >= max) {
@@ -293,7 +272,35 @@ enum MinMax {
         return alfaMoves.get((int) (Math.random() * alfaMoves.size()));
     }
     
-    private enum Diagonal {
+    private enum Node {
+        MIN {//beta (player)
+            @Override
+            protected int toAlfaBeta(int alfaBeta, int value) {
+                return Math.min(alfaBeta, value);
+            }
+
+            @Override
+            protected int valueOf(int value) {
+                return -value;
+            }
+        },
+        MAX {//alfa (ai)
+            @Override
+            protected int toAlfaBeta(int alfaBeta, int value) {
+                return Math.max(alfaBeta, value);
+            }
+
+            @Override
+            protected int valueOf(int value) {
+                return value;
+            }
+        };
+        
+        abstract int toAlfaBeta(int alfaBeta, int value);
+        abstract int valueOf(int value);
+    }
+    
+     private enum Diagonal {
         MIN_LEFT_TO_RIGHT(COLUMN, 0, -COLUMN) {//--
             @Override
             long getLine(int index, long occupied, long from) {

@@ -1,9 +1,6 @@
 package draughts10x10;
 
 import static draughts10x10.Draughts10x10.AI;
-import static draughts10x10.SquareBoard.GRID;
-import static draughts10x10.SquareBoard.x;
-import static draughts10x10.SquareBoard.y;
 import static draughts10x10.Draughts10x10.BLACK;
 import static draughts10x10.Draughts10x10.GAME_OVER;
 import static draughts10x10.Draughts10x10.SQUAREBOARD;
@@ -13,6 +10,9 @@ import static draughts10x10.HintBoard.NOT_SELECTED;
 import static draughts10x10.PositionBoard.EMPTY;
 import static draughts10x10.PositionBoard.PIECE;
 import static draughts10x10.PositionBoard.WB;
+import static draughts10x10.SquareBoard.GRID;
+import static draughts10x10.SquareBoard.x;
+import static draughts10x10.SquareBoard.y;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Graphics;
@@ -53,7 +53,7 @@ final class Game extends JLayeredPane implements ActionListener {
 
     //boards
     final private PositionBoard positionBoard = new PositionBoard();
-    final private HintBoard hintBoard = new HintBoard();
+    private HintBoard hintBoard;// = new HintBoard();
 
     //undo
     final private Stack<String> positions = new Stack();
@@ -72,119 +72,10 @@ final class Game extends JLayeredPane implements ActionListener {
         UNDO.setEnabled(false);
         GAME_OVER.setVisible(false);
 
-        //player move
-        hintBoard.addMouseListener(new MouseAdapter() {
-            ArrayList<Integer> getMove(int index, ArrayList<Integer> move) {
-                hintBoard.setVisible(false);
-                UNDO.setEnabled(false);
-                positions.push(positionBoard.getPosition());
-                
-                move.add(0, index);
-                
-                return move;
-            }
-            
-            @Override
-            public void mousePressed(MouseEvent e) {
-                for (int index = 0; index < SQUAREBOARD.square.length; index++) {
-                    if (SQUAREBOARD.square[index].contains(e.getPoint())) {
-                        int selected = hintBoard.getSelected();                        
-
-                        //multiple moves same destination
-                        if (selected != NOT_SELECTED && !positionBoard.getMove().isEmpty() && (positionBoard.getIndex(index) == EMPTY || index == selected)) {
-                            ArrayList<Integer> move = new ArrayList(positionBoard.getMove());
-                            int step = move.remove(move.size() - 1);
-                            
-                            //x==y
-                            if (index != step && Math.abs(x(index) - x(step)) == Math.abs(y(index) - y(step))) {
-                                Direction direction = Direction.getDirection(step, index);
-                             
-                                step = direction.getStep(step);
-                              
-                                if (positionBoard.getIndex(selected) == KING[player]) {
-                                    while (step != index && (positionBoard.getIndex(step) == EMPTY || step == selected)) {
-                                        step = direction.getStep(step);
-                                    }
-                                }
-
-                                if (pieces[1 - player].contains(step) && !move.contains(step)) {
-                                    move.add(step);
-
-                                    step = direction.getStep(step);
-                                    
-                                    if (positionBoard.getIndex(selected) == KING[player]) {
-                                        while (step != index && (positionBoard.getIndex(step) == EMPTY || step == selected)) {
-                                            step = direction.getStep(step);
-                                        }
-                                    }
-                                    
-                                    if (step == index) {
-                                        move.add(index);
-                                        
-                                        if (move.indexOf(index) == maxCapture) {//move
-                                            new Thread(new BoardMove(player, getMove(selected, move))).start();
-                                        } else {//continue
-                                            positionBoard.setMove(move);
-
-                                            repaint();
-                                        }
-                                    }
-                                }
-                            }
-                        //index is occupied
-                        } else if (positionBoard.getIndex(index) != EMPTY) {
-                            positionBoard.getMove().clear();
-                            
-                            if (moves.containsKey(index)) {
-                                ArrayList<Integer>[] move = moves.get(index);
-                                
-                                if (move.length == 1) {//move
-                                    new Thread(new BoardMove(player, getMove(index, move[0]))).start();
-                                } else {//selected=index
-                                    hintBoard.setSelected(index);
-                                    positionBoard.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                        
-                                    //multiple moves with same destination
-                                    loop : for (int i = 1; i < move.length; i++) {
-                                        for (int to = move[i].get(maxCapture), j = 0; j < i; j++) {
-                                            if (move[j].get(maxCapture) == to) {
-                                                positionBoard.getMove().add(index);
-                                                
-                                                break loop;
-                                            }
-                                        }
-                                    }
-                                }
-                            } else if (selected != NOT_SELECTED) {
-                                hintBoard.setSelected(NOT_SELECTED);
-                                positionBoard.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-                            }
-                        
-                            repaint();
-                        //selected, index is empty
-                        } else if (moves.containsKey(selected)) {
-                            for (ArrayList<Integer> move : moves.get(selected)) {
-                                if (move.get(maxCapture) == index) {//move
-                                    new Thread(new BoardMove(player, getMove(selected, move))).start();
-                                }
-                            }
-                        }                        
-                        
-                        break;
-                    }
-                }
-            }
-        });
-        
-        //positionBoard on top
         add(positionBoard, new Integer(1));
-        add(hintBoard);
-        
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                //size boards
-                hintBoard.setSize(getSize());
                 positionBoard.setSize(getSize());
    
                 //begin game
@@ -345,7 +236,111 @@ final class Game extends JLayeredPane implements ActionListener {
             if (moves.isEmpty()) {//game over
                 GAME_OVER.setVisible(true);
             } else if (color == player) {//player
-                hintBoard.setBoard(moves.keySet());
+                hintBoard = new HintBoard(moves.keySet());
+                hintBoard.setSize(getSize());
+                hintBoard.addMouseListener(new MouseAdapter() {
+                    ArrayList<Integer> getMove(int index, ArrayList<Integer> move) {
+                        remove(hintBoard);
+                        
+                        UNDO.setEnabled(false);
+                        positions.push(positionBoard.getPosition());
+
+                        move.add(0, index);
+
+                        return move;
+                    }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        for (int index = 0; index < SQUAREBOARD.square.length; index++) {
+                            if (SQUAREBOARD.square[index].contains(e.getPoint())) {
+                                int selected = hintBoard.getSelected();                        
+
+                                //multiple moves same destination
+                                if (selected != NOT_SELECTED && !positionBoard.getMove().isEmpty() && (positionBoard.getIndex(index) == EMPTY || index == selected)) {
+                                    ArrayList<Integer> move = new ArrayList(positionBoard.getMove());
+                                    int step = move.remove(move.size() - 1);
+
+                                    //x==y
+                                    if (index != step && Math.abs(x(index) - x(step)) == Math.abs(y(index) - y(step))) {
+                                        Direction direction = Direction.getDirection(step, index);
+
+                                        step = direction.getStep(step);
+
+                                        if (positionBoard.getIndex(selected) == KING[player]) {
+                                            while (step != index && (positionBoard.getIndex(step) == EMPTY || step == selected)) {
+                                                step = direction.getStep(step);
+                                            }
+                                        }
+
+                                        if (pieces[1 - player].contains(step) && !move.contains(step)) {
+                                            move.add(step);
+
+                                            step = direction.getStep(step);
+
+                                            if (positionBoard.getIndex(selected) == KING[player]) {
+                                                while (step != index && (positionBoard.getIndex(step) == EMPTY || step == selected)) {
+                                                    step = direction.getStep(step);
+                                                }
+                                            }
+
+                                            if (step == index) {
+                                                move.add(index);
+
+                                                if (move.indexOf(index) == maxCapture) {//move
+                                                    new Thread(new BoardMove(player, getMove(selected, move))).start();
+                                                } else {//continue
+                                                    positionBoard.setMove(move);
+                                                }
+                                            }
+                                        }
+                                    }
+                                //index is occupied
+                                } else if (positionBoard.getIndex(index) != EMPTY) {
+                                    positionBoard.getMove().clear();
+
+                                    if (moves.containsKey(index)) {
+                                        ArrayList<Integer>[] move = moves.get(index);
+
+                                        if (move.length == 1) {//move
+                                            new Thread(new BoardMove(player, getMove(index, move[0]))).start();
+                                        } else {//selected=index
+                                            hintBoard.setSelected(index);
+                                            positionBoard.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+                                            //multiple moves with same destination
+                                            loop : for (int i = 1; i < move.length; i++) {
+                                                for (int to = move[i].get(maxCapture), j = 0; j < i; j++) {
+                                                    if (move[j].get(maxCapture) == to) {
+                                                        positionBoard.getMove().add(index);
+
+                                                        break loop;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else if (selected != NOT_SELECTED) {
+                                        hintBoard.setSelected(NOT_SELECTED);
+                                        positionBoard.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                                    }
+                                //selected, index is empty
+                                } else if (moves.containsKey(selected)) {
+                                    for (ArrayList<Integer> move : moves.get(selected)) {
+                                        if (move.get(maxCapture) == index) {//move
+                                            new Thread(new BoardMove(player, getMove(selected, move))).start();
+                                        }
+                                    }
+                                }                        
+                                
+                                repaint();
+
+                                break;
+                            }
+                        }
+                    }
+                });
+                
+                add(hintBoard);
             } else {//ai
                 new Thread(){
                     @Override
@@ -358,8 +353,8 @@ final class Game extends JLayeredPane implements ActionListener {
             }
 
             //UNDO
-            if (moves.isEmpty() || color == player) {
-                UNDO.setEnabled(!positions.isEmpty());
+            if (moves.isEmpty() || (color == player && !positions.isEmpty())) {
+                UNDO.setEnabled(true);
             }
         }
     }
@@ -372,7 +367,8 @@ final class Game extends JLayeredPane implements ActionListener {
         if (moves.isEmpty()) {
             GAME_OVER.setVisible(false);
         } else {
-            hintBoard.setVisible(false);
+            remove(hintBoard);
+
             positionBoard.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));            
         }
         

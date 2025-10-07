@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -35,7 +36,7 @@ final class SquareBoard extends JPanel implements ActionListener {
     final static int GRID = 10;
     
     //background
-    private static Image wood;
+    private static BufferedImage wood;
     
     //squares
     final Rectangle[] square = new Rectangle[GRID * GRID / 2];

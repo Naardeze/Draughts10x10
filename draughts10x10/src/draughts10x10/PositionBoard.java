@@ -1,5 +1,6 @@
 package draughts10x10;
 
+import static draughts10x10.Draughts10x10.SQUAREBOARD;
 import static draughts10x10.SquareBoard.GRID;
 import static draughts10x10.SquareBoard.paintSquare;
 import java.awt.Color;
@@ -7,7 +8,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.JComponent;
-import static draughts10x10.Draughts10x10.SQUAREBOARD;
 
 /**
  * PositionBoard

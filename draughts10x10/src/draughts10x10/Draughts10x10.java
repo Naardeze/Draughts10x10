@@ -42,7 +42,7 @@ final class Draughts10x10 extends JFrame {
     //AI search depth
     final static JSlider AI = new JSlider(1, 7); 
     
-    //The board games are played on
+    //board10x10
     final static SquareBoard SQUAREBOARD = new SquareBoard();
     
     //GUI components
