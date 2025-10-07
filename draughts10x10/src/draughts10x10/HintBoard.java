@@ -12,7 +12,7 @@ import java.util.Set;
  * HintBoard
  * 
  * Board for player move (mouse). 
- * Colors moveable (hint) or pressed (selected) piece(s)
+ * Colors moveable (kset) or pressed (selected) piece(s)
  * 
  * selected
  * hint
