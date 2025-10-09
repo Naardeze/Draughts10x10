@@ -215,7 +215,7 @@ final class Game extends JLayeredPane implements ActionListener {
                         
                         //empty
                         if(position[step] == EMPTY && (piece == KING[color] || vertical == horizontal[color])) {
-                            if (maxCapturePiece == 0) {
+                            if (maxCapturePiece == 0) {//legal move
                                 movesPiece.add(new ArrayList(Arrays.asList(new Integer[] {step})));
                             }
 
@@ -223,7 +223,7 @@ final class Game extends JLayeredPane implements ActionListener {
                                 do {
                                     step = vertical.getStep(step);
 
-                                    if (maxCapturePiece == 0 && position[step] == EMPTY) {
+                                    if (maxCapturePiece == 0 && position[step] == EMPTY) {//legal move
                                         movesPiece.add(new ArrayList(Arrays.asList(new Integer[] {step})));
                                     }
                                 } while (position[step] == EMPTY && vertical.canStep(step));
@@ -270,8 +270,7 @@ final class Game extends JLayeredPane implements ActionListener {
 
                                     //empty square(s)
                                     for (int to : destination) {
-                                        //legal move
-                                        if (captures.size() == maxCapturePiece) {
+                                        if (captures.size() == maxCapturePiece) {//legal move
                                             ArrayList<Integer> move = new ArrayList(captures);
                                             
                                             move.add(to);
@@ -526,3 +525,4 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
+
