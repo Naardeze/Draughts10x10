@@ -149,8 +149,7 @@ class MinMax extends HashMap<String, Integer> {
             //moveable
             if (!movesPiece.isEmpty()) {
                 if (maxCapturePiece > maxCapture) {
-                    moves.clear();
-
+                    moves.clear();
                     maxCapture = maxCapturePiece;
                 }
                 
