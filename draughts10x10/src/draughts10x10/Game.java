@@ -35,14 +35,12 @@ import javax.swing.JLayeredPane;
  * Game
  * 
  * Gameloop, logic and move animation
- * Move = ArrayList -> captures and destination (last) 
  * 
- * -turn (1-state (moves), 2-evaluation (game_over or move (player (hintBoard) or ai (MinMax))))
+ * -turn(color) -> get moves -> gameover or move (player or AI)
  * -actionPerformed (undo move)
  * 
+ * class BoardMove -> animation (move, promotion, capture)
  * enum Direction -> move in 4 directions (x, y)
- * 
- * BoardMove -> animation (move, promotion, capture)
  * 
  * @author Naardeze
  */
@@ -215,7 +213,7 @@ final class Game extends JLayeredPane implements ActionListener {
                         
                         //empty
                         if(position[step] == EMPTY && (piece == KING[color] || vertical == horizontal[color])) {
-                            if (maxCapturePiece == 0) {//legal move
+                            if (maxCapturePiece == 0) {
                                 movesPiece.add(new ArrayList(Arrays.asList(new Integer[] {step})));
                             }
 
@@ -223,7 +221,7 @@ final class Game extends JLayeredPane implements ActionListener {
                                 do {
                                     step = vertical.getStep(step);
 
-                                    if (maxCapturePiece == 0 && position[step] == EMPTY) {//legal move
+                                    if (maxCapturePiece == 0 && position[step] == EMPTY) {
                                         movesPiece.add(new ArrayList(Arrays.asList(new Integer[] {step})));
                                     }
                                 } while (position[step] == EMPTY && vertical.canStep(step));
@@ -270,7 +268,8 @@ final class Game extends JLayeredPane implements ActionListener {
 
                                     //empty square(s)
                                     for (int to : destination) {
-                                        if (captures.size() == maxCapturePiece) {//legal move
+                                        //legal move
+                                        if (captures.size() == maxCapturePiece) {
                                             ArrayList<Integer> move = new ArrayList(captures);
                                             
                                             move.add(to);
@@ -375,7 +374,7 @@ final class Game extends JLayeredPane implements ActionListener {
     }
    
     //animation constants
-    final private static int FRAMES = 32;//frames p square
+    final private static int FRAMES = 33;//frames p square
     final private static int MILLI = 4;//delay p frame
     final private static int DELAY = 124;//delay in animation
     
@@ -525,4 +524,3 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
-

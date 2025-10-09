@@ -12,10 +12,10 @@ import java.util.HashSet;
 /**
  * MinMax
  * 
- * Minimax with alfa beta pruning
+ * Minimax with alfa beta pruning, extends HashMap (position, value) -> no dubbel calculations
  * 
  * enum Node -> evaluation
- * enum Diagonal -> move in 4 directions (bitboards)
+ * enum Diagonal -> move in 4 directions (bitboards) -> Special Thanx to Logic Crazy Chess
  * 
  * @author Naardez
  */
@@ -86,9 +86,10 @@ class MinMax extends HashMap<String, Integer> {
                 
                                     //legal move
                                     if (Long.bitCount(captures) >= maxCapturePiece) {
-                                        if (Long.bitCount(captures) > maxCapturePiece) 
-                       bv               movesPiece.clear();
-                     maxCapturePiece++;
+                                        if (Long.bitCount(captures) > maxCapturePiece) {
+                                            movesPiece.clear();
+
+                                            maxCapturePiece++;
                                         }
                                         
                                         movesPiece.add(move);
@@ -148,7 +149,8 @@ class MinMax extends HashMap<String, Integer> {
             //moveable
             if (!movesPiece.isEmpty()) {
                 if (maxCapturePiece > maxCapture) {
-                    moves.clear();
+                    moves.clear();
+
                     maxCapture = maxCapturePiece;
                 }
                 

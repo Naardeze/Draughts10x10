@@ -1,4 +1,4 @@
-zo is draughts10x10;
+package draughts10x10;
 
 import static draughts10x10.PositionBoard.PIECE;
 import static draughts10x10.PositionBoard.WB;
@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 /**
  * SquareBoard
  * 
- * squares (50)
+ * squares (50).
  * 
  * -x (column)
  * -y (row)

@@ -61,7 +61,7 @@ final class Draughts10x10 extends JFrame {
         
         JButton rotation = new JButton("\ud83d\udd04");//rotate SQUAREBOARD
 
-        JPanel center = new JPanel();//BOARD10x10
+        JPanel center = new JPanel();//SQUAREBOARD
         JPanel south = new JPanel(new GridLayout(1, 3));//left, GAME_OVER, right
 
         JPanel left = new JPanel();//UNDO
@@ -106,15 +106,15 @@ final class Draughts10x10 extends JFrame {
         GAME_OVER.setFont(GAME_OVER.getFont().deriveFont(16f));
         
         HINT.setHorizontalTextPosition(JCheckBox.LEFT);
-        HINT.addActionListener(e -> game.repaint());
         HINT.setFont(HINT.getFont().deriveFont(16f));
         HINT.setFocusable(false);
+        HINT.addActionListener(e -> game.repaint());
         
         rotation.setContentAreaFilled(false);
         rotation.setBorder(null);
-        rotation.addActionListener(SQUAREBOARD);
         rotation.setFont(rotation.getFont().deriveFont(Font.PLAIN, 16));
         rotation.setFocusable(false);
+        rotation.addActionListener(SQUAREBOARD);
         
         menuBar.setLayout(new BorderLayout());
         
@@ -145,7 +145,7 @@ final class Draughts10x10 extends JFrame {
     }
 
     public static void main(String[] args)throws Exception {
-        //BOARD10X10 size
+        //SQUAREBOARD size
         final int boardSize = 560;
 
         //start Draughts10x10
