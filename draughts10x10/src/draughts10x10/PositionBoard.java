@@ -29,11 +29,14 @@ final class PositionBoard extends JComponent {
     //empty square
     final static char EMPTY = '_';
 
-    //images (2x2)
+    //images (2xWB)
     final static Image[][] PIECE = new Image[2][WB.length()];
+    
+    //square colors
+    final private static Color[] MOVE = {Color.yellow, Color.green};//<<captures>, piece>
 
     private char[] position = new char[SQUAREBOARD.square.length];
-    private ArrayList<Integer> move = new ArrayList();//captures=yellow, piece=green
+    private ArrayList<Integer> move = new ArrayList();
     
     PositionBoard() {
         //begin position
@@ -76,11 +79,12 @@ final class PositionBoard extends JComponent {
         this.move = move;
     }
     
+    //paint board
     @Override
     public void paintComponent(Graphics g) {
         //move
         for (int index : move) {
-            g.setColor(new Color[] {Color.yellow, Color.green}[(move.indexOf(index) + 1) / move.size()]);//<0..0, 1>
+            g.setColor(MOVE[(move.indexOf(index) + 1) / move.size()]);//[0..0, 1]
             
             paintSquare(g, SQUAREBOARD.square[index]);
         }

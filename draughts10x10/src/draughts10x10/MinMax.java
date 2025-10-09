@@ -42,6 +42,7 @@ class MinMax extends HashMap<String, Integer> {
         HashMap<Integer, HashSet<Long>> moves = new HashMap();
         int maxCapture = 0;
     
+        //pieces
         for (long empty = ~(turn ^ opponent), pieces = turn; pieces != 0l; pieces ^= Long.lowestOneBit(pieces)) {
             int index = Long.numberOfTrailingZeros(pieces);
             boolean isKing = position[index] == KING[color];
@@ -54,7 +55,6 @@ class MinMax extends HashMap<String, Integer> {
                     if (vertical.canStep(index)) {
                         long move = vertical.getStep(index);
 
-                        //king steos
                         if (isKing && (move & middle & empty) == move) {
                             move = vertical.getLine(index, ~empty, move);
                         }
@@ -66,7 +66,6 @@ class MinMax extends HashMap<String, Integer> {
                             long step = vertical.getStep(Long.numberOfTrailingZeros(capture));
                             
                             if ((step & empty) == step) {
-                                //king steos empty
                                 if (isKing && (step & middle) == step) {
                                     step = vertical.getLine(index, ~empty, step) & empty;
                                 }
@@ -74,12 +73,15 @@ class MinMax extends HashMap<String, Integer> {
                                 //captures to check
                                 ArrayList<Long> captureMoves = new ArrayList(Arrays.asList(new Long[] {capture ^ step}));//captureMove
                                 
+                                //piece off board
                                 empty ^= 1l << index;
                                 
                                 //check captureMoves
                                 do {
+                                    //captureMove
                                     move = captureMoves.remove(0);
 
+                                    //captured
                                     long captures = move & opponent;
                 
                                     //legal move
@@ -97,16 +99,16 @@ class MinMax extends HashMap<String, Integer> {
                                     for (long destination = move & empty; destination != 0l; destination ^= Long.lowestOneBit(destination)) {
                                         int to = Long.numberOfTrailingZeros(destination);
 
+                                        //1x4
                                         for (Diagonal diagonal : Diagonal.values()) {
                                             if (diagonal.canStep(to)) {
                                                 step = diagonal.getStep(to);
 
-                                                //king steps
                                                 if (isKing && (step & middle & empty) == step) {
                                                     step = diagonal.getLine(to, ~empty, step);
                                                 }
 
-                                                //no dubbles (captures and empty)
+                                                //capture (no dubbles)
                                                 if ((step & move) == 0l) {
                                                     capture = step & opponent;
 
@@ -114,12 +116,11 @@ class MinMax extends HashMap<String, Integer> {
                                                         step = diagonal.getStep(Long.numberOfTrailingZeros(capture));
 
                                                         if ((step & empty) == step) {
-                                                            //king steps empty
                                                             if (isKing && (step & middle) == step) {
                                                                 step = diagonal.getLine(to, ~empty, step) & empty;
                                                             }
 
-                                                            captureMoves.add(captures ^ capture ^ step);
+                                                            captureMoves.add(captures ^ capture ^ step);//captureMove
                                                         }
                                                     }
                                                 }
@@ -128,6 +129,7 @@ class MinMax extends HashMap<String, Integer> {
                                     }
                                 } while (!captureMoves.isEmpty());//all capture moves checked
                                 
+                                //piece on board
                                 empty ^= 1l << index;
                             }
                         }
@@ -168,11 +170,14 @@ class MinMax extends HashMap<String, Integer> {
 
             value += node.valueOf(maxCapture);
             
+            //pieces
             for (int from : moves.keySet()) {
                 char piece = position[from];
-
+                                
+                //piece off board
                 position[from] = EMPTY;
 
+                //moves piece
                 for (long move : moves.get(from)) {
                     long capture = move & opponent;
                     ArrayList<Integer> captures = new ArrayList();
@@ -187,6 +192,7 @@ class MinMax extends HashMap<String, Integer> {
                         int to = Long.numberOfTrailingZeros(destination);                    
                         String key = String.valueOf(getPosition(color, position.clone(), piece, captures, to));
 
+                        //occured?
                         if (!containsKey(key)) {
                             put(key, minMax.valueOf(key.toCharArray(), opponent ^ capture, turn ^ (1l << from ^ 1l << to), this, value, alfaBeta.clone(), depth));
                         }
@@ -201,6 +207,7 @@ class MinMax extends HashMap<String, Integer> {
                     }
                 }
 
+                //piece on board
                 position[from] = piece;
             }
         }        
@@ -225,13 +232,15 @@ class MinMax extends HashMap<String, Integer> {
     static ArrayList<Integer> getAIMove(int ai, char[] position, HashSet<Integer>[] pieces, HashMap<Integer, ArrayList<Integer>[]> moves, int maxCapture, int depth) {
         int player = 1 - ai;
         
-        long turn = 0l;
-        long opponent = 0l;
+        long turn = 0l;//ai
+        long opponent = 0l;//player
 
+        //pieces[ai]->turn
         for (int index : pieces[ai]) {
             turn ^= 1l << index;
         }
         
+        //pieces[player]->opponent
         for (int index : pieces[player]) {
             opponent ^= 1l << index;
         }
@@ -309,33 +318,33 @@ class MinMax extends HashMap<String, Integer> {
         MIN_LEFT_TO_RIGHT(COLUMN, 0, -COLUMN) {//--
             @Override
             long getLine(int index, long occupied, long from) {
-                long mask = LEFT_TO_RIGHT[COLUMN - 1 - index % COLUMN + index / COLUMN % 2 + index / GRID];
+                long diagonal = LEFT_TO_RIGHT[COLUMN - 1 - index % COLUMN + index / COLUMN % 2 + index / GRID];
 
-                return mask & (occupied ^ Long.reverse(Long.reverse(mask & occupied) - Long.reverse(from)));
+                return diagonal & (occupied ^ Long.reverse(Long.reverse(diagonal & occupied) - Long.reverse(from)));
             }
         }, 
         MIN_RIGHT_TO_LEFT(COLUMN - 1, 0, -COLUMN + 1) {//+-
             @Override
             long getLine(int index, long occupied, long from) {
-                long mask = RIGHT_TO_LEFT[index % COLUMN + index / GRID];
+                long diagonal = RIGHT_TO_LEFT[index % COLUMN + index / GRID];
 
-                return mask & (occupied ^ Long.reverse(Long.reverse(mask & occupied) - Long.reverse(from)));
+                return diagonal & (occupied ^ Long.reverse(Long.reverse(diagonal & occupied) - Long.reverse(from)));
             }
         }, 
         PLUS_RIGHT_TO_LEFT(COLUMN, ROW, COLUMN) {//-+
             @Override
             long getLine(int index, long occupied, long from) {
-                long mask = RIGHT_TO_LEFT[index % COLUMN + index / GRID];
+                long diagonal = RIGHT_TO_LEFT[index % COLUMN + index / GRID];
 
-                return mask & (occupied ^ ((mask & occupied) - from));
+                return diagonal & (occupied ^ ((diagonal & occupied) - from));
             }
         }, 
         PLUS_LEFT_TO_RIGHT(COLUMN - 1, ROW, COLUMN + 1) {//++
             @Override
             long getLine(int index, long occupied, long from) {
-                long mask = LEFT_TO_RIGHT[COLUMN - 1 - index % COLUMN + index / COLUMN % 2 + index / GRID];
+                long diagonal = LEFT_TO_RIGHT[COLUMN - 1 - index % COLUMN + index / COLUMN % 2 + index / GRID];
 
-                return mask & (occupied ^ ((mask & occupied) - from));
+                return diagonal & (occupied ^ ((diagonal & occupied) - from));
             }
         };
 
@@ -363,17 +372,17 @@ class MinMax extends HashMap<String, Integer> {
         //king steps
         abstract long getLine(int index, long occupied, long from);
 
-        //mask
-        final private static long[] LEFT_TO_RIGHT = new long[GRID];//-+
-        final private static long[] RIGHT_TO_LEFT = new long[GRID - 1];//+-
+        //diagonals
+        final private static long[] LEFT_TO_RIGHT = new long[GRID];//->
+        final private static long[] RIGHT_TO_LEFT = new long[GRID - 1];//<-
 
         static {
             for (int i = 0; i < LEFT_TO_RIGHT.length; i++) {
                 LEFT_TO_RIGHT[i] = 0l;
 
                 //bit: 4-0, 5-45
-                //j: 1-9, 9-1
-                for (int bit = COLUMN - 1 - Math.min(i, COLUMN - 1) + i / COLUMN * COLUMN + Math.max(0, i - COLUMN) * GRID, j = 0; j < 1 + (Math.min(i, COLUMN - 1) - Math.max(0, i - COLUMN)) * 2; j++, bit += COLUMN + 1 - bit / COLUMN % 2) {
+                //bitCount: 1-9, 9-1
+                for (int bit = COLUMN - 1 - Math.min(i, COLUMN - 1) + i / COLUMN * COLUMN + Math.max(0, i - COLUMN) * GRID, bitCount = 0; bitCount < 1 + (Math.min(i, COLUMN - 1) - Math.max(0, i - COLUMN)) * 2; bitCount++, bit += COLUMN + 1 - bit / COLUMN % 2) {
                     LEFT_TO_RIGHT[i] ^= 1l << bit;
                 }
             }
@@ -382,8 +391,8 @@ class MinMax extends HashMap<String, Integer> {
                 RIGHT_TO_LEFT[i] = 0l;
 
                 //bit: 0-4-44
-                //j: 2-10-2
-                for (int bit = Math.min(i, COLUMN - 1) + Math.max(0, i - (COLUMN - 1)) * GRID, j = 0; j < 2 + (Math.min(i, COLUMN - 1) - Math.max(0, i - (COLUMN - 1))) * 2; j++, bit += COLUMN - bit / COLUMN % 2) {
+                //bitCount: 2-10-2
+                for (int bit = Math.min(i, COLUMN - 1) + Math.max(0, i - (COLUMN - 1)) * GRID, bitCount = 0; bitCount < 2 + (Math.min(i, COLUMN - 1) - Math.max(0, i - (COLUMN - 1))) * 2; bitCount++, bit += COLUMN - bit / COLUMN % 2) {
                     RIGHT_TO_LEFT[i] ^= 1l << bit;
                 }
             }

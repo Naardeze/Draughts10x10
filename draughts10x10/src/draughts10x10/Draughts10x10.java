@@ -82,7 +82,8 @@ final class Draughts10x10 extends JFrame {
         AI.setMajorTickSpacing(1);
         AI.setPaintTicks(true);
         AI.setOpaque(false);
-        AI.setToolTipText("AI Search Depth (1-7)");
+        AI.setToolTipText("" + AI.getValue());
+        AI.addChangeListener(e -> AI.setToolTipText("" + AI.getValue()));
 
         //game on/off SQUAREBOARD
         SQUAREBOARD.addContainerListener(new ContainerAdapter() {

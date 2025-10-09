@@ -35,8 +35,9 @@ import javax.swing.JLayeredPane;
  * Game
  * 
  * Gameloop, logic and move animation
+ * Move = ArrayList -> captures and destination (last) 
  * 
- * -turn (state (moves), evaluation (game_over or move (player (hintBoard) or ai (MinMax))))
+ * -turn (1-state (moves), 2-evaluation (game_over or move (player (hintBoard) or ai (MinMax))))
  * -actionPerformed (undo move)
  * 
  * enum Direction -> move in 4 directions (x, y)
@@ -72,27 +73,28 @@ final class Game extends JLayeredPane implements ActionListener {
         UNDO.setEnabled(false);
         GAME_OVER.setVisible(false);
 
+        //player move
         hintBoard.addMouseListener(new MouseAdapter() {
-            ArrayList<Integer> getMove(int index, ArrayList<Integer> move) {
+            ArrayList<Integer> getMove(int from, ArrayList<Integer> move) {
                 hintBoard.setVisible(false);
                 UNDO.setEnabled(false);
                 positions.push(positionBoard.getPosition());
 
-                move.add(0, index);
+                move.add(0, from);
 
-                return move;
+                return move;//<from, <captures>, to>
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                for (int index = 0; index < SQUAREBOARD.square.length; index++) {
-                    if (SQUAREBOARD.square[index].contains(e.getPoint())) {
-                        int selected = hintBoard.getSelected();                        
+                for (int index = 0; index < SQUAREBOARD.square.length; index++) {//squares
+                    if (SQUAREBOARD.square[index].contains(e.getPoint())) {//pressed square
+                        int selected = hintBoard.getSelected();
 
                         //moves same destination
                         if (selected != NOT_SELECTED && !positionBoard.getMove().isEmpty() && (positionBoard.getIndex(index) == EMPTY || index == selected)) {
-                            ArrayList<Integer> move = new ArrayList(positionBoard.getMove());
-                            int step = move.remove(move.size() - 1);
+                            ArrayList<Integer> move = new ArrayList(positionBoard.getMove());//captures
+                            int step = move.remove(move.size() - 1);//piece
 
                             //x==y
                             if (index != step && Math.abs(x(index) - x(step)) == Math.abs(y(index) - y(step))) {
@@ -219,6 +221,7 @@ final class Game extends JLayeredPane implements ActionListener {
             HashSet<ArrayList<Integer>> movesPiece = new HashSet();
             int maxCapturePiece = maxCapture;
             
+            //2x2
             for (Direction[] horizontal : new Direction[][] {{Direction.MIN_X_MIN_Y, Direction.MIN_X_PLUS_Y}, {Direction.PLUS_X_MIN_Y, Direction.PLUS_X_PLUS_Y}}) {//-+
                 for (Direction vertical : horizontal) {//[WB]
                     if (vertical.canStep(index)) {
@@ -279,7 +282,9 @@ final class Game extends JLayeredPane implements ActionListener {
                                         maxCapturePiece++;
                                     }
 
+                                    //empty square(s)
                                     for (int to : destination) {
+                                        //legal move
                                         if (captures.size() == maxCapturePiece) {
                                             ArrayList<Integer> move = new ArrayList(captures);
                                             
@@ -287,6 +292,7 @@ final class Game extends JLayeredPane implements ActionListener {
                                             movesPiece.add(move);
                                         }
 
+                                        //1x4
                                         for (Direction diagonal : Direction.values()) {
                                             if (diagonal.canStep(to)) {
                                                 step = diagonal.getStep(to);                                                
@@ -392,7 +398,7 @@ final class Game extends JLayeredPane implements ActionListener {
     //animation: move, promotion, captures
     private class BoardMove extends Component implements Runnable {
         int color;
-        int from;
+        int index;
         char piece;
         Image image;
         Point point;
@@ -400,34 +406,33 @@ final class Game extends JLayeredPane implements ActionListener {
         BoardMove(int color, ArrayList<Integer> move) {
             this.color = color;            
 
-            from = move.remove(0);
-            piece = positionBoard.getIndex(from);
+            index = move.remove(0);
+            piece = positionBoard.getIndex(index);
             image = PIECE[(PAWN[color] + "" + KING[color]).indexOf(piece)][color];
-            point = SQUAREBOARD.square[from].getLocation();
+            point = SQUAREBOARD.square[index].getLocation();
   
             setSize(positionBoard.getSize());
 
             //piece off board
             positionBoard.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));            
             positionBoard.setMove(move);
-            positionBoard.setIndex(from, EMPTY);
+            positionBoard.setIndex(index, EMPTY);
             positionBoard.add(this);
         }
         
         @Override
         public void run() {
             //animation
-            Direction direction = Direction.getDirection(from, positionBoard.getMove().get(0));
+            Direction direction = Direction.getDirection(index, positionBoard.getMove().get(0));
             
-            int to = from;
-
+            //move
             for (int step : positionBoard.getMove()) {
                 do {
-                    to = direction.getStep(to);
+                    index = direction.getStep(index);
                     
                     //point->square[to]
-                    for (int horizontal = SQUAREBOARD.square[to].x - point.x, vertical = SQUAREBOARD.square[to].y - point.y, i = FRAMES - 1; i >= 0; i--) {
-                        point.setLocation(SQUAREBOARD.square[to].x - (int) (i * (float) horizontal / FRAMES), SQUAREBOARD.square[to].y - (int) (i * (float) vertical / FRAMES));
+                    for (int horizontal = SQUAREBOARD.square[index].x - point.x, vertical = SQUAREBOARD.square[index].y - point.y, i = FRAMES - 1; i >= 0; i--) {
+                        point.setLocation(SQUAREBOARD.square[index].x - (int) (i * (float) horizontal / FRAMES), SQUAREBOARD.square[index].y - (int) (i * (float) vertical / FRAMES));
 
                         repaint();
                         
@@ -435,11 +440,11 @@ final class Game extends JLayeredPane implements ActionListener {
                             Thread.sleep(MILLI);
                         } catch (Exception ex) {}
                     }
-                } while (direction.x * (x(step) - x(to)) != -direction.y * (y(step) - y(to)));//x!=-y
+                } while (direction.x * (x(step) - x(index)) != -direction.y * (y(step) - y(index)));//x!=-y
     
                 //90 degree angle
-                if (to != step) {
-                    direction = Direction.getDirection(to, step);
+                if (index != step) {
+                    direction = Direction.getDirection(index, step);
                     
                     try {
                         Thread.sleep(DELAY);
@@ -448,13 +453,13 @@ final class Game extends JLayeredPane implements ActionListener {
             }            
             
             //promotion
-            if (piece == PAWN[color] && ((color == WHITE && to < GRID / 2) || (color == BLACK && to >= SQUAREBOARD.square.length - GRID / 2))) {
+            if (piece == PAWN[color] && ((color == WHITE && index < GRID / 2) || (color == BLACK && index >= SQUAREBOARD.square.length - GRID / 2))) {
                 piece = KING[color];
             }
 
             //piece on board
             positionBoard.remove(this);
-            positionBoard.setIndex(to, piece);
+            positionBoard.setIndex(index, piece);
             positionBoard.repaint();
             
             try {
@@ -524,4 +529,3 @@ final class Game extends JLayeredPane implements ActionListener {
     }
 
 }
-

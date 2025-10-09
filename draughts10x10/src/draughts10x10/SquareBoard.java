@@ -35,6 +35,9 @@ final class SquareBoard extends JPanel implements ActionListener {
     //size
     final static int GRID = 10;
     
+    //square color
+    final private static Color DARK = new Color(175, 125, 85);
+    
     //background
     private static BufferedImage wood;
     
@@ -44,7 +47,7 @@ final class SquareBoard extends JPanel implements ActionListener {
     SquareBoard() {
         super(new BorderLayout());//add(game, "Center");
     
-        setForeground(new Color(175, 125, 85));//square color
+        setForeground(DARK);
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -52,7 +55,7 @@ final class SquareBoard extends JPanel implements ActionListener {
                 int width = getWidth() / GRID;
                 int height = getHeight() / GRID;
                 
-                //bound squares
+                //bound squares (square[0] top left)
                 for (int i = 0; i < square.length; i++) {
                     square[i] = new Rectangle(x(i) * width, y(i) * height, width, height);
                 }
@@ -81,6 +84,7 @@ final class SquareBoard extends JPanel implements ActionListener {
         g.fillRect(square.x, square.y, square.width, square.height);
     }
     
+    //paint board
     @Override
     public void paintComponent(Graphics g) {
         g.drawImage(wood, 0, 0, getWidth(), getHeight(), null);

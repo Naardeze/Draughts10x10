@@ -20,13 +20,16 @@ import java.util.Set;
 final class HintBoard extends Component {
     //not selected (show moveable)
     final static int NOT_SELECTED = -1;
+    
+    //square color
+    final private static Color ORANGE = Color.orange;
 
     private int selected;
     private Set<Integer> keySet;
     
     HintBoard() {
         setVisible(false);
-        setForeground(Color.orange);
+        setForeground(ORANGE);
     }
     
     int getSelected() {
@@ -37,6 +40,7 @@ final class HintBoard extends Component {
         this.selected = selected;
     }
     
+    //get player move
     void setBoard(Set<Integer> keySet) {
         selected = NOT_SELECTED;
         this.keySet = keySet;
@@ -44,6 +48,7 @@ final class HintBoard extends Component {
         setVisible(true);
     }
     
+    //paint board
     @Override
     public void paint(Graphics g) {
         if (selected != NOT_SELECTED) {
