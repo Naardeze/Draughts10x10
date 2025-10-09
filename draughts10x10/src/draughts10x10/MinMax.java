@@ -86,8 +86,7 @@ class MinMax extends HashMap<String, Integer> {
                 
                                     //legal move
                                     if (Long.bitCount(captures) >= maxCapturePiece) {
-                                        if (Long.bitCount(captures) > maxCapturePiece) {
-                                            movesPiece.clear();
+                                        if (Long.bitCount(captures) > maxCapturePiece) {                                           movesPiece.clear();
 
                                             maxCapturePiece++;
                                         }
