@@ -113,8 +113,7 @@ final class Draughts10x10 extends JFrame {
         HINT.setFocusable(false);
         HINT.setToolTipText("Hint On/Off");
         HINT.addActionListener(e -> {
-            HintBoard.setHintOn(HINT.isSelected());
-            
+            HintBoard.setHintOn(HINT.isSelected());            
             game.repaint();
         });
         
@@ -162,3 +161,4 @@ final class Draughts10x10 extends JFrame {
     }
 
 }
+
