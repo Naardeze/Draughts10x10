@@ -21,7 +21,7 @@ import javax.swing.JComponent;
  * @author Naardeze
  */
 
-public class Board extends JComponent {
+public abstract  class Board extends JComponent {
     final protected static Image[][] PIECE = new Image[2][WB.length()];
 
     final protected Rectangle[] square;
