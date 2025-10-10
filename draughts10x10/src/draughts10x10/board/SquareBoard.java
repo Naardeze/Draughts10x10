@@ -78,11 +78,7 @@ final public class SquareBoard extends Board implements ActionListener {
     public Rectangle[] getSquares() {
         return square;
     }
-    
-//    //fill square
-  //  static void paintSquare(Graphics g, Rectangle square) {
-    //    g.fillRect(square.x, square.y, square.width, square.height);
-   // }
+    
     
     //paint board
     @Override
