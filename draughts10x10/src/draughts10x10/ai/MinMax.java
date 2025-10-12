@@ -192,6 +192,7 @@ public class MinMax extends HashMap<String, Integer> {
         }
             
         //3 (pruning)
+        //moveable pieces
         pruning : for (int from : moves.keySet()) {
             char piece = position[from];
 
@@ -328,4 +329,5 @@ public class MinMax extends HashMap<String, Integer> {
     }
 
 }
+
 
