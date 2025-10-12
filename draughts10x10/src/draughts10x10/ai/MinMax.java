@@ -55,7 +55,7 @@ public class MinMax extends HashMap<String, Integer> {
 
             //2x2
             for (Diagonal[] horizontal : new Diagonal[][] {{Diagonal.MIN_LEFT, Diagonal.PLUS_LEFT}, {Diagonal.MIN_RIGHT, Diagonal.PLUS_RIGHT}}) {//-+
-                for (Diagonal vertical : horizontal) {//-+ [WB] (man step forward)
+                for (Diagonal vertical : horizontal) {//-+ [WB] (man step only forward)
                     if (vertical.canStep(index)) {
                         //first step
                         long move = vertical.getStep(index);
@@ -328,3 +328,4 @@ public class MinMax extends HashMap<String, Integer> {
     }
 
 }
+
