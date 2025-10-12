@@ -216,7 +216,7 @@ public class MinMax extends HashMap<String, Integer> {
                     //position after move
                     String key = String.valueOf(getPosition(color, position.clone(), piece, captures, to));
 
-                    //look up?
+                    //minmax
                     if (!containsKey(key)) {
                         put(key, minMax.valueOf(key.toCharArray(), opponent ^ capture, turn ^ (1l << from ^ 1l << to), this, alfaBeta.clone(), depth));//search
                     }
@@ -329,6 +329,7 @@ public class MinMax extends HashMap<String, Integer> {
     }
 
 }
+
 
 
 
