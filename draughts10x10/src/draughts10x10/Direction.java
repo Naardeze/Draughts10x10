@@ -18,8 +18,8 @@ enum Direction {
     MIN_X_PLUS_Y(-1, 1),
     PLUS_X_PLUS_Y(1, 1);
 
-    final int x;
-    final int y;
+    final protected  int x;
+    final protected int y;
 
     Direction(int x, int y) {
         this.x = x;
@@ -53,3 +53,4 @@ enum Direction {
         }
     }
 }
+
