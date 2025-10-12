@@ -42,13 +42,5 @@ public class Move {
         
         return boardMove;
     }
-    public ArrayList<Integer> getBoardMove(int from) {
-        ArrayList<Integer> boardMove = new ArrayList(captures);
-        
-        boardMove.add(0, from);
-        boardMove.add(to);
-        
-        return boardMove;
-    }
     
 }
