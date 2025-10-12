@@ -62,7 +62,7 @@ enum Diagonal {
         this.step = step;
     }
 
-    //has neightbour
+    //has next
     boolean canStep(int index) {
         return index % GRID != column && index / COLUMN != row;
     }
