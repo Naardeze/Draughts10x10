@@ -284,9 +284,9 @@ public class MinMax extends HashMap<String, Integer> {
             
             //moves
             for (Move move : moves.get(from)) {
-                int to = move.getTo();//.remove(maxCapture);
-                ArrayList<Integer> captures = move.getCaptures();
-                long capture = 0l;
+                int to = move.getTo();//destination
+                ArrayList<Integer> captures = move.getCaptures();//captured
+                long capture = 0l;//bitboard captured
                 
                 //captures->capture
                 for (int index : captures) {
@@ -329,5 +329,6 @@ public class MinMax extends HashMap<String, Integer> {
     }
 
 }
+
 
 
