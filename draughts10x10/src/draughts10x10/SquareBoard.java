@@ -24,7 +24,6 @@ import javax.swing.JPanel;
  * 
  * -x (column)
  * -y (row)
- * -getSquares -> used by all boards
  * -paintSquare (g.fillRect(square))
  * -actionPerformed (rotate)
  * 
@@ -109,3 +108,4 @@ final class SquareBoard extends JPanel implements ActionListener {
     }
 
 }
+
