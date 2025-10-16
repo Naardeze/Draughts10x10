@@ -25,7 +25,7 @@ import javax.swing.JSlider;
  * Draughts10x10 (main)
  * 
  * Game (WHITE/BLACK)
- * AI (1-7)
+ * AI (1-5)
  * 
  * undo move
  * hint on/off
