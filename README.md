@@ -5,7 +5,7 @@ Play against Computer (board 10x10)
 
 White or Black
 
-AI Search Depth 1-7 (minimax with alfa beta pruning (bitboards))
+AI level 1-5 -> x 2 moves (alfa & beta). AI uses bitboards.
 
 Hint Moveable Pieces (on/off)
 
