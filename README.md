@@ -1,5 +1,5 @@
 # Draughts10x10
-Java Swing International (Polish) Draughts with AI
+Java Swing International Draughts with AI
 
 Play against Computer (board 10x10)
 
