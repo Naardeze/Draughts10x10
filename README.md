@@ -5,7 +5,7 @@ Play against Computer (board 10x10)
 
 White or Black
 
-AI level 1-5 -> x 2 moves (alfa & beta). AI uses bitboards.
+AI level 1-5 -> x 2 moves (alfa & beta). AI uses bitboards (bit 0-49).
 
 Hint Moveable Pieces (on/off)
 
