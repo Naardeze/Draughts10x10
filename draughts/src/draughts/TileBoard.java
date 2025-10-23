@@ -48,11 +48,11 @@ final class TileBoard extends JPanel implements ActionListener {
         setForeground(DARK);
         addComponentListener(new ComponentAdapter() {
             @Override
-            public void componentResized(ComponentEvent e) {//once at start program
+            public void componentResized(ComponentEvent e) {//At start program
                 int width = getWidth() / GRID;
                 int height = getHeight() / GRID;
                 
-                for (int i = 0; i < tile.length; i++) {//tile[0] -> (1,0), tile[49] -> (9, 9); top left to bottom right
+                for (int i = 0; i < tile.length; i++) {//tile[0] -> (1,0)...tile[49] -> (8, 9); top left to bottom right
                     tile[i] = new Rectangle(x(i) * width, y(i) * height, width, height);
                 }
                 
@@ -101,3 +101,4 @@ final class TileBoard extends JPanel implements ActionListener {
     }
 
 }
+
