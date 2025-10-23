@@ -141,11 +141,10 @@ public class Draughts10x10 extends JFrame {
 
     public static void main(String[] args)throws Exception {
          //TILEBOARD size
-        int boardSize = 520;
+        int boardSize = 600;
         
         //start Draughts10x10
         new Draughts10x10(boardSize);
     }
 
 }
-
