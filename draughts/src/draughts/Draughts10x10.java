@@ -27,7 +27,7 @@ import javax.swing.JSlider;
  * Main window with the board (TILEBOARD) all games are played on.
  * 
  * Game (WHITE/BLACK)
- * AI level (1-5 -> 1 level = 2 moves)
+ * AI level 1-5 (1 level = 2 moves)
  * UNDO
  * HINT On/Off
  * Rotate TILEBOARD
@@ -148,3 +148,4 @@ public class Draughts10x10 extends JFrame {
     }
 
 }
+
