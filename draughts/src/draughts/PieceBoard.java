@@ -13,7 +13,7 @@ import javax.swing.JComponent;
 /**
  * PieceBoard
  * 
- * Board with pieces (begin position by default) and highlighted move tiles.
+ * Board with pieces (begin position by default) and highlight move tiles.
  *
  * board (begin)
  * move (yellow, green)
@@ -84,3 +84,4 @@ final class PieceBoard extends JComponent {
     }
     
 }
+
