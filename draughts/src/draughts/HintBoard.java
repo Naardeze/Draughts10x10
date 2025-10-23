@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * HintBoard
  * 
- * Board coloring moveable or selected (by mouse) player piece(s).
+ * Highlight (orange) tiles of moveable or selected piece(s).
  * 
  * selected (mousePressed)
  * keySet (moveable)
@@ -57,3 +57,4 @@ final class HintBoard extends Component {
     }
     
 }
+
