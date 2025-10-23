@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 /**
  * TileBoard
  * 
- * Wooden board with tiles
+ * Board (wood) with dark tiles
  * Scale pieces (tile size)
  * 
  * tile[50]
@@ -101,4 +101,5 @@ final class TileBoard extends JPanel implements ActionListener {
     }
 
 }
+
 
