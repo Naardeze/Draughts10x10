@@ -15,7 +15,7 @@ import java.util.HashSet;
  * Basic minimax algoritme with alfa beta pruning; 
  * extends HashMap(board, value) -> prevent dubble calculations.
  * 1 depth = 2 moves (alfa beta)
- * Keeps searching while board contains captures.
+ * continues while board contains captures.
  * 
  * enum Node -> evaluation
  * enum Diagonal -> move in 4 directions (bitboards)
@@ -385,3 +385,4 @@ class MinMax extends HashMap<String, Integer> {
     }
 
 }
+
