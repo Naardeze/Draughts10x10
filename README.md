@@ -1,11 +1,7 @@
 # Draughts10x10
 Java Swing International Draughts with AI
 
-Play draughts against computer (basic minimax with alfa beta pruning).
-
-AI uses bitboards (bit 0..49).
-
-If max depth is reached continues while board contains captures.
+Play draughts against computer (minimax with alfa beta pruning).
 
 -New game white or black
 
