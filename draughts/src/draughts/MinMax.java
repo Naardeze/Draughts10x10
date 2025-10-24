@@ -159,6 +159,7 @@ class MinMax extends HashMap<String, Integer> {
     //moves maxCapture
     //evaluation
     //alfa beta pruning
+    //Looks like Game.turn (don't invent the wheel twice)
     private int valueOf(char[] board, long turn, long opponent, MinMax minMax, int[] alfaBeta, int value, int depth) {
         //moves maxCapture
         HashMap<Integer, HashSet<Long>> moves = new HashMap();
@@ -385,4 +386,5 @@ class MinMax extends HashMap<String, Integer> {
     }
 
 }
+
 
