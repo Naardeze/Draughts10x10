@@ -16,7 +16,7 @@ import java.util.LinkedList;
  * 
  * Basic minimax with alfa beta pruning.
  * Extends HashMap(board, value) -> prevent dubble calculations.
- * 1 level = depth = 2 moves (alfa beta).
+ * 1 level = 1 depth = 2 moves (alfa beta).
  * Depth = 0 -> continue while board contains captures.
  * 
  * enum Node -> evaluation
@@ -383,4 +383,5 @@ class MinMax extends HashMap<String, Integer> {
     }
 
 }
+
 
