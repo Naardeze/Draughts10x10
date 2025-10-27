@@ -14,7 +14,7 @@ import java.util.LinkedList;
 /**
  * MinMax
  * 
- * Basic minimax algoritme (bitboards) with alfa beta pruning.
+ * Basic minimax with alfa beta pruning.
  * Extends HashMap(board, value) -> prevent dubble calculations.
  * 1 level = depth = 2 moves (alfa beta).
  * Depth = 0 -> continue while board contains captures.
@@ -383,3 +383,4 @@ class MinMax extends HashMap<String, Integer> {
     }
 
 }
+
