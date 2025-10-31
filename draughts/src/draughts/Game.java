@@ -120,7 +120,7 @@ final class Game extends JLayeredPane implements ActionListener {
                     if (TILEBOARD.tile[pressed].contains(e.getPoint())) {
                         int from = hintBoard.getFrom();
 
-                        //1 multiple moves same destination (press all steps)
+                        //1 multiple moves with same destination (press all steps)
                         if (from != NONE && !pieceBoard.getMove().isEmpty() && (pieceBoard.getIndex(pressed) == EMPTY || pressed == from)) {
                             ArrayList<Integer> move = new ArrayList(pieceBoard.getMove());//captured
                             int step = move.remove(move.size() - 1);
@@ -172,7 +172,7 @@ final class Game extends JLayeredPane implements ActionListener {
                                 } else {
                                     hintBoard.setFrom(pressed);
 
-                                    //check: multiple moves same destination
+                                    //check: multiple moves with same destination
                                     loop : for (int i = 1; i < move.length; i++) {
                                         for (int to = move[i].get(maxCapture), j = 0; j < i; j++) {
                                             if (move[j].get(maxCapture) == to) {
@@ -514,4 +514,5 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
 
