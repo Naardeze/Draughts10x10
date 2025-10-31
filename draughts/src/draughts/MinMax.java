@@ -245,7 +245,7 @@ final class MinMax extends HashMap<String, Integer> {
         if (moves.isEmpty()) {//game over
             return alfaBeta[node.ordinal()];
         } else if (depth > 0) {//continue
-            depth -= node.ordinal();//ALFA-0 BETA-
+            depth -= node.ordinal();//ALFA-0 BETA-1
         } else if (maxCapture == 0) {
             return value;
         }
@@ -362,3 +362,4 @@ final class MinMax extends HashMap<String, Integer> {
     }
 
 }
+
