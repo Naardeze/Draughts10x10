@@ -28,7 +28,7 @@ import javax.swing.JSlider;
  * game (pieceBoard, hintBoard)
  * 
  * menu -> new Game (WHITE/BLACK)
- * LEVEL (1-5) -> AI (1 level = 2 moves)
+ * LEVEL (1-5) -> AI search depth (1 level = 2 moves)
  * ARROW -> undo move
  * HINT -> color moveable
  * Rotate -> TILEBOARD
@@ -148,6 +148,7 @@ public class Draughts10x10 extends JFrame {
     }
 
 }
+
 
 
 
