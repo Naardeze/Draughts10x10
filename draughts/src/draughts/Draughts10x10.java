@@ -64,6 +64,11 @@ public class Draughts10x10 extends JFrame {
         JPanel left = new JPanel();//ARROW
         JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT));//HINT, rotation
         
+        menuBar.setLayout(new BorderLayout());
+        
+        menuBar.add(menu, BorderLayout.WEST);
+        menuBar.add(LEVEL, BorderLayout.EAST);
+        
         for (int color : new int[] {WHITE, BLACK}) {
             menu.add(new JMenuItem(new ImageIcon(Toolkit.getDefaultToolkit().createImage(WB.toCharArray()[color] + ".png").getScaledInstance(44, 44, Image.SCALE_SMOOTH)))).addActionListener(e -> {
                 TILEBOARD.remove(game);
@@ -112,11 +117,6 @@ public class Draughts10x10 extends JFrame {
         rotation.setFocusable(false);
         rotation.addActionListener(TILEBOARD);
 
-        menuBar.setLayout(new BorderLayout());
-        
-        menuBar.add(menu, BorderLayout.WEST);
-        menuBar.add(LEVEL, BorderLayout.EAST);
-        
         center.add(TILEBOARD);
 
         left.add(ARROW);
@@ -148,4 +148,5 @@ public class Draughts10x10 extends JFrame {
     }
 
 }
+
 
