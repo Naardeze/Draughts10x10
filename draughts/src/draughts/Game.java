@@ -8,10 +8,10 @@ import static draughts.Draughts.BLACK;
 import static draughts.Draughts.BOARD10X10;
 import static draughts.Draughts.GAME_OVER;
 import static draughts.Draughts.WHITE;
+import static draughts.HintBoard.NONE;
 import static draughts.PieceBoard.EMPTY;
 import static draughts.PieceBoard.PIECE;
 import static draughts.PieceBoard.WB;
-import static draughts.board.HintBoard.NONE;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -516,3 +516,4 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
