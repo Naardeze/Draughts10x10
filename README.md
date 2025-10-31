@@ -1,7 +1,7 @@
 # Draughts10x10
 Java Swing International Draughts with AI
 
-Play draughts against computer (minimax with alfa beta pruning).
+Play draughts against computer (minimax with alfa beta pruning, using bitboards for extra performance).
 
 No draw implemented!!
 
