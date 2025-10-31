@@ -40,7 +40,7 @@ public class Draughts10x10 extends JFrame {
     final static int WHITE = 0;
     final static int BLACK = 1;
 
-    final static JSlider LEVEL = new JSlider(1, 5);//4
+    final static JSlider LEVEL = new JSlider(1, 5);//3
     
     final static TileBoard TILEBOARD = new TileBoard();
 
@@ -148,5 +148,6 @@ public class Draughts10x10 extends JFrame {
     }
 
 }
+
 
 
