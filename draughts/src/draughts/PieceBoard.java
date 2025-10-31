@@ -37,7 +37,8 @@ final class PieceBoard extends JComponent {
     private char[] board = new char[BOARD10X10.tile.length];//50
     private ArrayList<Integer> move = new ArrayList();
     
-    PieceBoard() {//begin position
+    PieceBoard() {
+        //begin position
         Arrays.fill(board, 0, board.length / 2 - GRID / 2, B);//0-19 'b'
         Arrays.fill(board, board.length / 2 - GRID / 2, board.length / 2 + GRID / 2, EMPTY);//20-29 '_'
         Arrays.fill(board, board.length / 2 + GRID / 2, board.length, W);//30-49 'w'
@@ -83,3 +84,4 @@ final class PieceBoard extends JComponent {
     }
     
 }
+
