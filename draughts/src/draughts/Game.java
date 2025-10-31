@@ -389,7 +389,7 @@ final class Game extends JLayeredPane implements ActionListener {
         }
     }
     
-    //previous board
+    //undo
     @Override
     public void actionPerformed(ActionEvent e) {
         ARROW.setEnabled(false);
@@ -514,6 +514,7 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
 
 
 
