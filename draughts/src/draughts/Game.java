@@ -38,7 +38,7 @@ import javax.swing.JLayeredPane;
  * 
  * enum Direction -> move in 4 directions (x, y)
  * 
- * pieceBoard -> pieces and colored move tiles
+ * pieceBoard -> pieces and move
  * hintBoard -> selected or moveable player pieces, mouseadapter for player move
  * 
  * -turn(color) -> 1: pieces, moves, maxCapture
@@ -514,6 +514,7 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
 
 
 
