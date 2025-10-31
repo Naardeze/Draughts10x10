@@ -275,7 +275,7 @@ final class MinMax extends HashMap<String, Integer> {
 
                     alfaBeta[node.ordinal()] = node.toAlfaBeta(alfaBeta[node.ordinal()], get(key));
 
-                    if (alfaBeta[Node.ALFA.ordinal()] >= alfaBeta[Node.BETA.ordinal()]) {//alfa>=beta
+                    if (alfaBeta[Node.ALFA.ordinal()] >= alfaBeta[Node.BETA.ordinal()]) {//max>=min
                         return alfaBeta[node.ordinal()];
                     }
                 }
@@ -362,3 +362,4 @@ final class MinMax extends HashMap<String, Integer> {
     }
 
 }
+
