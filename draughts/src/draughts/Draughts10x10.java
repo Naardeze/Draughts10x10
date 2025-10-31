@@ -142,8 +142,10 @@ public class Draughts10x10 extends JFrame {
 
     public static void main(String[] args) {
         int boardSize = 560;
+        
         //start Draughts10x10
         new Draughts10x10(boardSize);
     }
 
 }
+
