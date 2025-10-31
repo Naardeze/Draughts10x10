@@ -426,7 +426,7 @@ final class Game extends JLayeredPane implements ActionListener {
             this(1 - player, move.remove(0), move);
         }
 
-        BoardMove(int color, int from, ArrayList<Integer> move) {
+        BoardMove(int color, int from, ArrayList<Integer> move) {//color
             this.color = color; 
             
             if (color == player) {
@@ -514,6 +514,7 @@ final class Game extends JLayeredPane implements ActionListener {
     }
     
 }
+
 
 
 
