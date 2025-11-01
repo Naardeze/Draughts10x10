@@ -37,7 +37,7 @@ final class MinMax extends HashMap<String, Integer> {
     private static enum Node {
         ALFA {//ai
             @Override
-            int toAlfaBeta(int alfaBeta, int value) {//alfa
+            int toAlfaBeta(int alfaBeta, int value) {//>
                 return Math.max(alfaBeta, value);
             }
 
@@ -48,7 +48,7 @@ final class MinMax extends HashMap<String, Integer> {
         },
         BETA {//player
             @Override
-            int toAlfaBeta(int alfaBeta, int value) {//beta
+            int toAlfaBeta(int alfaBeta, int value) {//<
                 return Math.min(alfaBeta, value);
             }
 
@@ -382,3 +382,4 @@ final class MinMax extends HashMap<String, Integer> {
     }
 
 }
+
