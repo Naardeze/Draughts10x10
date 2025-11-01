@@ -4,10 +4,10 @@ Java Swing International Draughts with AI
 Play draughts against computer (minimax with alfa beta pruning, using bitboards for extra performance).
 
 No draw implemented!!
+ m
+x-White or Black
 
--White or Black
-
--AI 1-5 -> 1 level = 2 moves (alfa & beta)
+-AI 1-5 -> 1 level = 2 moves (min & max)
 
 -Undo move
 
