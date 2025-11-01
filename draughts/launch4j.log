@@ -1,0 +1,39 @@
+
+
+Version:	3.50
+CmdLine:	C:\Users\L.S. Foeken\Downloads\Documents\NetBeansProjects\draughts\Draughts10x10.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	C:\Users\L.S. Foeken\Downloads\Documents\NetBeansProjects\draughts\.
+Requires JDK:	No
+Requires 64-Bit: No
+Java min ver:	1.000.000
+Java max ver:	
+Substitute:	JAVA_HOME = 
+Substitute:	PATH = C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Pinnacle\Shared Files\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\L.S. Foeken\AppData\Local\Microsoft\WindowsApps;C:\Users\L.S. Foeken\AppData\Local\GitHubDesktop\bin;C:\Program Files\Java\jre1.8.0_351\bin
+JRE paths:	;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Pinnacle\Shared Files\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\L.S. Foeken\AppData\Local\Microsoft\WindowsApps;C:\Users\L.S. Foeken\AppData\Local\GitHubDesktop\bin;C:\Program Files\Java\jre1.8.0_351\bin
+Check launcher:	C:\Program Files (x86)\Common Files\Oracle\Java\javapath\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\system32\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\System32\Wbem\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\System32\WindowsPowerShell\v1.0\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files (x86)\Pinnacle\Shared Files\bin\javaw.exe (not found)
+Check launcher:	C:\WINDOWS\system32\bin\javaw.exe (not found)
+Check launcher:	C:\WINDOWS\bin\javaw.exe (not found)
+Check launcher:	C:\WINDOWS\System32\Wbem\bin\javaw.exe (not found)
+Check launcher:	C:\WINDOWS\System32\WindowsPowerShell\v1.0\bin\javaw.exe (not found)
+Check launcher:	C:\WINDOWS\System32\OpenSSH\bin\javaw.exe (not found)
+Check launcher:	C:\Users\L.S. Foeken\AppData\Local\Microsoft\WindowsApps\bin\javaw.exe (not found)
+Check launcher:	C:\Users\L.S. Foeken\AppData\Local\GitHubDesktop\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\Java\jre1.8.0_351\bin\javaw.exe (not found)
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Version string: 1.008.000 / 64-Bit (OK)
+Check launcher:	C:\Program Files\Java\jre1.8.0_471\bin\javaw.exe (OK)
+Match:		1.008.000
+Runtime used:	1.008.000 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_471\bin\javaw.exe
+Launcher args:	-jar "C:\Users\L.S. Foeken\Downloads\Documents\NetBeansProjects\draughts\Draughts10x10.exe"
+Args length:	91/32768 chars
+Exit code:	0
