@@ -324,7 +324,7 @@ final class MinMax extends HashMap<String, Integer> {
     static ArrayList<Integer> getAIMove(int ai, char[] board, HashSet<Integer>[] pieces, HashMap<Integer, ArrayList<Integer>[]> moves, int maxCapture, int level) {
         int player = 1 - ai;//opponent
         
-        long turn = 0l;//piece[ai]
+        long turn = 0l;//pieces[ai]
         long opponent = 0l;//pieces[player]
 
         for (int index : pieces[ai]) {
@@ -373,8 +373,9 @@ final class MinMax extends HashMap<String, Integer> {
         return alfaMoves.get((int) (Math.random() * alfaMoves.size()));
     }
     
-    static {//middle (Diagonal.values() -> canStep(i) = true (4xtrue))
-        for (int i = COLUMN; i < ROW * COLUMN; i++) {//5<i<45
+    static {
+        //middle -> move in 4 directions
+        for (int i = COLUMN; i < ROW * COLUMN; i++) {//5-45
             if (i % GRID != COLUMN - 1 && i % GRID != COLUMN) {//!=4 & !=5
                 middle ^= 1l << i;
             }
@@ -382,4 +383,3 @@ final class MinMax extends HashMap<String, Integer> {
     }
 
 }
-
